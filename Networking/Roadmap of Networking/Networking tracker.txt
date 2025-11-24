@@ -1,0 +1,481 @@
+Networking - Complete Learning Path (Basic to Advanced Pro Level)
+Networking-a Basic to Advanced level varaikum master panna, idha oru structured path-a follow pannu. Ellame detail-a cover pandren:
+
+LEVEL 1: BASICS & FUNDAMENTALS
+1. Introduction to Networking
+
+	Network enna, yen use panrom
+	Types of Networks: PAN, LAN, MAN, WAN, CAN	
+	Network Topologies: Bus, Star, Ring, Mesh, Tree, Hybrid
+	Client-Server vs Peer-to-Peer
+	Network Architecture: Centralized, Decentralized, Distributed
+
+2. OSI Model (7 Layers)
+
+	Physical Layer
+	Data Link Layer
+	Network Layer
+	Transport Layer
+	Session Layer
+	Presentation Layer
+	Application Layer
+	Each layer-oda functions, protocols, devices
+
+3. TCP/IP Model (4 Layers)
+
+	Network Access Layer
+	Internet Layer
+	Transport Layer
+	Application Layer
+	OSI vs TCP/IP comparison
+
+4. Network Devices
+
+	Hub, Repeater, Bridge
+	Switch (Layer 2, Layer 3)
+	Router
+	Gateway
+	Modem
+	Access Point, Wireless Controller
+	Firewall, IDS/IPS
+	Load Balancer
+	Proxy Server
+
+5. Transmission Media
+
+	Guided Media: Twisted Pair, Coaxial Cable, Fiber Optic
+	Unguided Media: Radio waves, Microwaves, Infrared, Satellite
+	Cable categories: Cat5, Cat5e, Cat6, Cat6a, Cat7
+	Fiber types: Single-mode, Multi-mode
+
+
+LEVEL 2: NETWORKING PROTOCOLS & ADDRESSING
+6. IP Addressing (IPv4)
+
+	Binary to Decimal conversion
+	IP Address structure
+	Classes: A, B, C, D, E
+	Public vs Private IP
+	Loopback, APIPA
+	Special IP ranges
+	Broadcast, Unicast, Multicast
+
+7. Subnetting & VLSM
+
+	Subnet Mask
+	CIDR Notation
+	Subnetting calculations
+	Variable Length Subnet Masking (VLSM)
+	Supernetting
+	Wildcard masks
+
+8. IPv6
+
+	Why IPv6
+	Address format
+	Types: Unicast, Multicast, Anycast
+	Link-local, Unique local, Global unicast
+	IPv6 subnetting
+	Dual stack, Tunneling
+	IPv4 to IPv6 transition mechanisms
+
+9. MAC Addressing
+
+	Physical address structure
+	OUI (Organizationally Unique Identifier)
+	MAC address types
+	ARP (Address Resolution Protocol)
+	RARP, Proxy ARP
+
+10. Important Protocols
+Application Layer:
+
+	HTTP/HTTPS
+	FTP, SFTP, TFTP
+	SMTP, POP3, IMAP
+	DNS, DHCP
+	Telnet, SSH
+	SNMP
+	NTP, LDAP
+	SMB, NFS
+
+Transport Layer:
+
+	TCP (Connection-oriented)
+	UDP (Connectionless)
+	TCP 3-way handshake
+	TCP flags
+	Port numbers (Well-known, Registered, Dynamic)
+
+Network Layer:
+
+	IP (IPv4, IPv6)
+	ICMP
+	IGMP
+	IPsec
+
+Data Link Layer:
+
+	Ethernet
+	PPP
+	HDLC
+	Frame Relay
+
+
+LEVEL 3: ROUTING & SWITCHING
+11. Switching Concepts
+
+	MAC Address Table
+	Frame forwarding methods
+	VLAN (Virtual LAN)
+	VLAN types: Data, Voice, Management, Native
+	Trunking (802.1Q)
+	VTP (VLAN Trunking Protocol)
+	DTP (Dynamic Trunking Protocol)
+	STP (Spanning Tree Protocol)
+	RSTP, MSTP
+	Port Security
+	EtherChannel, LACP
+
+12. Routing Fundamentals
+
+	Static Routing
+	Dynamic Routing
+	Default Route
+	Administrative Distance
+	Routing Table
+	Route summarization
+	Floating static routes
+
+13. Routing Protocols
+Distance Vector:
+
+	RIP (v1, v2)
+	IGRP
+	EIGRP (Hybrid)
+
+Link State:
+
+	OSPF
+	IS-IS
+
+Path Vector:
+
+	BGP
+
+Protocol Details:
+
+	Metrics (Hop count, Bandwidth, Delay, etc.)
+	Convergence
+	Route poisoning, Split horizon
+	OSPF areas, LSA types
+	BGP AS, eBGP, iBGP
+
+14. Advanced Routing
+
+	Policy-based routing
+	Route redistribution
+	Route filtering
+	Route maps
+	Access Control Lists (ACL)
+	Standard ACL
+	Extended ACL
+	Named ACL
+
+
+LEVEL 4: NETWORK SERVICES
+15. DHCP (Dynamic Host Configuration Protocol)
+
+	DORA process
+	DHCP Scope, Pool
+	Reservations
+	Lease time
+	DHCP Relay
+	DHCP Snooping
+
+16. DNS (Domain Name System)
+
+	DNS hierarchy
+	DNS Records: A, AAAA, CNAME, MX, NS, PTR, SOA, TXT, SRV
+	Forward lookup, Reverse lookup
+	Recursive vs Iterative query
+	DNS caching
+	DNSSEC
+
+17. NAT (Network Address Translation)
+
+	Static NAT
+	Dynamic NAT
+	PAT (Port Address Translation) / NAT Overload
+	NAT64
+
+18. Quality of Service (QoS)
+
+	Traffic classification
+	Marking (DSCP, CoS)
+	Queuing mechanisms
+	Policing and Shaping
+	Congestion management
+	Congestion avoidance
+
+
+LEVEL 5: WIRELESS NETWORKING
+19. Wireless Fundamentals
+
+	Radio Frequency basics
+	2.4 GHz vs 5 GHz vs 6 GHz
+	Channels and Channel bonding
+	SSID
+	Wireless standards: 802.11 a/b/g/n/ac/ax (WiFi 6), 802.11be (WiFi 7)
+
+20. Wireless Security
+
+	WEP, WPA, WPA2, WPA3
+	Enterprise vs Personal mode
+	802.1X authentication
+	RADIUS
+	EAP types: PEAP, EAP-TLS, EAP-TTLS
+	Wireless attacks and mitigation
+
+21. Wireless Design
+
+	Site survey
+	Heat maps
+	Controller vs Autonomous AP
+	CAPWAP protocol
+	Roaming
+	Mesh networking
+
+
+LEVEL 6: NETWORK SECURITY
+22. Security Fundamentals
+
+	CIA Triad
+	Authentication, Authorization, Accounting (AAA)
+	Defense in depth
+	DMZ (Demilitarized Zone)
+	Network segmentation
+
+23. Firewall Technologies
+
+	Packet filtering
+	Stateful inspection
+	Application layer firewall
+	Next-Generation Firewall (NGFW)
+	Firewall rules and policies
+	Zone-based firewall
+
+24. VPN (Virtual Private Network)
+
+	Site-to-Site VPN
+	Remote Access VPN
+	IPsec VPN
+	SSL/TLS VPN
+	GRE tunnels
+	DMVPN
+	L2TP, PPTP
+
+25. Network Attacks & Defense
+Common Attacks:
+
+	DoS, DDoS
+	Man-in-the-Middle
+	Spoofing (IP, ARP, DNS)
+	Phishing, Social Engineering
+	Malware, Ransomware
+	SQL Injection
+	Cross-Site Scripting (XSS)
+	Port scanning
+	Packet sniffing
+
+Defense Mechanisms:
+
+	IDS/IPS (Signature vs Anomaly-based)
+	Anti-malware
+	Endpoint security
+	Port security
+	802.1X
+	Network monitoring
+
+26. Cryptography in Networking
+
+	Symmetric encryption (AES, DES, 3DES)
+	Asymmetric encryption (RSA, ECC)
+	Hashing (MD5, SHA)
+	Digital signatures
+	PKI (Public Key Infrastructure)
+	Certificates (SSL/TLS)
+
+
+LEVEL 7: ADVANCED NETWORKING
+27. WAN Technologies
+
+	Leased lines
+	MPLS (Multi-Protocol Label Switching)
+	Metro Ethernet
+	SD-WAN
+	SONET/SDH
+	ATM
+	Frame Relay
+	PPPoE
+
+28. Data Center Networking
+
+	Three-tier architecture (Core, Distribution, Access)
+	Spine-Leaf architecture
+	Data center interconnect
+	VXLAN
+	EVPN
+	Fabric Path
+	Server load balancing
+	Storage networking (SAN, NAS, iSCSI, FCoE)
+	
+29. Network Automation
+
+	Python for networking
+	Network APIs (REST, NETCONF, RESTCONF)
+	YANG data models
+	Ansible for network automation
+	Configuration management
+	Infrastructure as Code (IaC)
+	SDN Controllers
+
+30. Software Defined Networking (SDN)
+
+	SDN architecture
+	Control plane vs Data plane
+	OpenFlow protocol
+	SDN Controllers (OpenDaylight, ONOS)
+	Network Function Virtualization (NFV)
+	Intent-based networking
+
+31. Cloud Networking
+
+	Virtual Private Cloud (VPC)
+	Subnets in cloud
+	Internet Gateway, NAT Gateway
+	VPC Peering
+	Transit Gateway
+	Direct Connect / ExpressRoute
+	Cloud load balancers
+	Cloud CDN
+	Hybrid cloud networking
+
+32. Network Monitoring & Management
+
+	SNMP (v1, v2c, v3)
+	Syslog
+	NetFlow, sFlow, IPFIX
+	Network monitoring tools (Wireshark, tcpdump)
+	Performance metrics
+	RMON
+	Network Management Systems (NMS)
+
+33. High Availability & Redundancy
+
+	HSRP (Hot Standby Router Protocol)
+	VRRP (Virtual Router Redundancy Protocol)
+	GLBP (Gateway Load Balancing Protocol)
+	Redundant links
+	Link aggregation
+	Clustering
+	Backup and disaster recovery
+
+34. Multicast Networking
+
+	Multicast addressing
+	IGMP (Internet Group Management Protocol)
+	PIM (Protocol Independent Multicast)
+	Multicast routing
+	Multicast applications
+
+
+LEVEL 8: SPECIALIZED TOPICS
+35. Voice over IP (VoIP)
+
+	VoIP fundamentals
+	SIP protocol
+	H.323
+	RTP, RTCP
+	Codecs
+	QoS for VoIP
+	VoIP security
+
+36. IoT Networking
+
+	IoT protocols: MQTT, CoAP
+	LoRaWAN
+	Zigbee, Z-Wave
+	Thread
+	6LoWPAN
+	IoT security challenges
+
+37. 5G & Mobile Networks
+
+	Cellular network evolution (2G to 5G)
+	5G architecture
+	Network slicing
+	Mobile core network
+	Handover mechanisms
+
+38. Network Design & Architecture
+
+	Requirements gathering
+	Capacity planning
+	Scalability and flexibility
+	Documentation
+	Network diagrams
+	Change management
+	Best practices
+
+39. Network Troubleshooting
+
+	OSI model approach
+	Troubleshooting methodology
+	Common tools: ping, traceroute, nslookup, dig, ipconfig, netstat
+	Packet capture and analysis
+	Log analysis
+	Cable testing
+	Performance issues
+
+
+LEVEL 9: PROFESSIONAL CERTIFICATIONS PATH
+40. Industry Certifications
+Entry Level:
+
+	CompTIA Network+
+	Cisco CCNA
+
+Professional Level:
+
+	Cisco CCNP (Enterprise, Security, Data Center, Service Provider)
+	Juniper JNCIA, JNCIS, JNCIP
+	CompTIA Security+
+	Palo Alto PCNSA, PCNSE
+
+Expert Level:
+
+	Cisco CCIE
+	Juniper JNCIE
+	AWS/Azure/GCP Networking Certifications
+
+
+PRACTICE & HANDS-ON
+41. Lab Setup
+
+	Packet Tracer
+	GNS3
+	EVE-NG
+	Virtual machines (VirtualBox, VMware)
+	Home lab setup
+	Cloud labs (AWS, Azure, GCP free tiers)
+
+42. Real-world Projects
+
+	Build home network
+	Configure enterprise network simulation
+	Implement VLANs and routing
+	Setup VPN
+	Configure firewall rules
+	Network monitoring setup
+	Automation scripts

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Definition & Use Cases</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 25px 0 15px;
+            color: #4db8ff;
+            border-bottom: 2px solid #4db8ff;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 20px 0 10px;
+            color: #66ccff;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .definition-box {
+            background-color: #3a3a3a;
+            border-left: 5px solid #4db8ff;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .use-case {
+            background-color: #3a3a3a;
+            border-radius: 10px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .use-case:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .use-case h3 {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .use-case h3::before {
+            content: "✓";
+            background-color: #4db8ff;
+            color: #2c2c2c;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .example {
+            background-color: #454545;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-style: italic;
+            border-left: 3px solid #66ccff;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #a0a0a0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
+            }
+            
+            .use-cases {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 25px 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .use-case {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>What is a Network?</h1>
+            <p>Understanding how devices connect and communicate</p>
+        </header>
+
+        <section>
+            <h2>Definition</h2>
+            <div class="definition-box">
+                <p>A network is formed when two or more devices (phones, laptops, routers, etc.) connect together to share data and communicate.</p>
+                <p><strong>Simple explanation:</strong> When data travels from one device to another device, that's a network.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Use Cases - Simple & Clear</h2>
+            <div class="use-cases">
+                <div class="use-case">
+                    <h3>File Sharing</h3>
+                    <p>Transfer files between devices that are on the same network.</p>
+                    <div class="example">
+                        <strong>Example:</strong> Sending a file from your phone to a friend's phone using Hotspot, Wi-Fi, or Bluetooth.
+                    </div>
+                </div>
+
+                <div class="use-case">
+                    <h3>Internet Access</h3>
+                    <p>Connecting devices to the internet through a network.</p>
+                    <div class="example">
+                        <strong>Example:</strong> Your phone or laptop connecting to a home router to access websites.
+                    </div>
+                </div>
+
+                <div class="use-case">
+                    <h3>Communication</h3>
+                    <p>Sending messages and making calls through networks.</p>
+                    <div class="example">
+                        <strong>Example:</strong> WhatsApp messages, Instagram DMs, emails - all travel through networks.
+                    </div>
+                </div>
+
+                <div class="use-case">
+                    <h3>Resource Sharing</h3>
+                    <p>Sharing devices and resources across multiple computers.</p>
+                    <div class="example">
+                        <strong>Example:</strong> Multiple computers in an office sharing one printer, scanner, or shared folders.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Network Basics - Understanding How Devices Connect and Communicate</p>
+        </footer>
+    </div>
+</body>
+</html>

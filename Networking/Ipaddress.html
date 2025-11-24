@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is an IP Address?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #34495e;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+        }
+
+        h1 {
+            color: #3498db;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 15px;
+        }
+
+        .definition-box, .example-box, .para-box {
+            background-color: #2c3e50;
+            border-left: 5px solid;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .definition-box {
+            border-left-color: #3498db;
+        }
+
+        .example-box {
+            border-left-color: #f39c12;
+        }
+
+        .para-box {
+            border-left-color: #2ecc71;
+        }
+
+        .definition-box h2, .example-box h2, .para-box h2 {
+            margin-bottom: 10px;
+        }
+
+        .definition-box h2 {
+            color: #3498db;
+        }
+
+        .example-box h2 {
+            color: #f39c12;
+        }
+
+        .para-box h2 {
+            color: #2ecc71;
+        }
+
+        .images-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            margin: 40px 0;
+            padding: 20px;
+            background-color: #2c3e50;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .flow-item {
+            width: 220px;
+            text-align: center;
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-placeholder {
+            height: 130px;
+            background-color: #1a252f;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px dashed #566573;
+            overflow: hidden;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .image-placeholder img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .flow-row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .image-label {
+            margin-top: 10px;
+            font-weight: 600;
+            color: #ecf0f1;
+        }
+
+        /* Data flow animations */
+        .data-flow {
+            position: absolute;
+            background: #3498db;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            white-space: nowrap;
+        }
+
+        /* ISP to Internet Connection animation */
+        .flow-isp-to-internet {
+            animation: moveDown 4s infinite;
+            top: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Internet Connection to YouTube Search animation */
+        .flow-internet-to-search {
+            animation: moveRight 4s infinite;
+            top: 50%;
+            left: 220px;
+            animation-delay: 1s;
+        }
+
+        /* YouTube Search to YouTube Server animation */
+        .flow-search-to-server {
+            animation: moveRight 4s infinite;
+            top: 50%;
+            left: 520px;
+            animation-delay: 2s;
+        }
+
+        /* YouTube Server to YouTube Search animation */
+        .flow-server-to-search {
+            animation: moveLeft 4s infinite;
+            top: 50%;
+            left: 820px;
+            animation-delay: 3s;
+            background: #e74c3c;
+        }
+
+        @keyframes moveDown {
+            0% {
+                top: 150px;
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                top: 350px;
+                opacity: 1;
+            }
+            100% {
+                top: 350px;
+                opacity: 0;
+            }
+        }
+
+        @keyframes moveRight {
+            0% {
+                left: 220px;
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                left: 520px;
+                opacity: 1;
+            }
+            100% {
+                left: 520px;
+                opacity: 0;
+            }
+        }
+
+        @keyframes moveLeft {
+            0% {
+                left: 820px;
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                left: 520px;
+                opacity: 1;
+            }
+            100% {
+                left: 520px;
+                opacity: 0;
+            }
+        }
+
+        .server-ip {
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            right: 0;
+            font-size: 11px;
+            color: #f39c12;
+            font-weight: bold;
+        }
+
+        /* Mobile-first responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .definition-box, .example-box, .para-box {
+                padding: 15px;
+                margin: 20px 0;
+            }
+            
+            .flow-row {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .flow-item {
+                width: 100%;
+                max-width: 280px;
+            }
+            
+            .images-flow {
+                padding: 15px;
+                gap: 30px;
+            }
+            
+            /* Mobile animations */
+            .data-flow {
+                display: none; /* Hide complex animations on mobile */
+            }
+            
+            /* Mobile-friendly animation alternative */
+            .mobile-flow-indicator {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 10px;
+                margin: 10px 0;
+                background: rgba(52, 152, 219, 0.2);
+                border-radius: 5px;
+                font-weight: bold;
+                color: #3498db;
+            }
+        }
+
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .definition-box, .example-box, .para-box {
+                padding: 12px;
+                margin: 15px 0;
+            }
+            
+            .image-placeholder {
+                height: 100px;
+            }
+            
+            .image-label {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Large screens */
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1100px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>What is an IP Address?</h1>
+
+        <div class="definition-box">
+            <h2>Definition</h2>
+            <p>Internet-la connect aagura ellarum — mobile, laptop, Tab, router, Wifi use panni dhan connect pannuvom appo andha andha device ah unique ah identify panna use pandradhu dhan IP Address. Ithu device-ah identify panna, data enga send panna nu internet-ku sollum.</p>
+        </div>
+
+        <div class="example-box">
+            <h2>Example</h2>
+            <p>Namma veedu address irukku la Postman letter anupum bodhu andha address pathu than post ah delivery pannuvan. Adhe maari internet-la message, video, data ellathayum correct device-ku reach panna IP address veedu address maari work aagum.</p>
+        </div>
+
+        <div class="para-box">
+            <h2>Real Life Use</h2>
+            <p>Ippo indha IP address ah vechu epdi namma real life la use panna porom nu oru example pakalam.</p>
+        </div>
+
+        <div class="images-flow">
+            <!-- Data flow elements -->
+            <div class="data-flow flow-isp-to-internet">192.168.1.1</div>
+            <div class="data-flow flow-internet-to-search">192.168.1.1</div>
+            <div class="data-flow flow-search-to-server">192.168.1.1</div>
+            <div class="data-flow flow-server-to-search">199.223.232.2</div>
+            
+            <!-- Mobile flow indicator -->
+            <div class="mobile-flow-indicator" style="display: none;">
+                Data Flow: ISP → Internet → YouTube Search → YouTube Server
+            </div>
+
+            <!-- Image 1 -->
+            <div class="flow-item">
+                <div class="image-placeholder">
+                    <img src="images/isp.png" alt="ISP">
+                </div>
+                <div class="image-label">Internet Service Provider</div>
+            </div>
+
+            <div class="flow-row">
+                <!-- Image 2 -->
+                <div class="flow-item">
+                    <div class="image-placeholder">
+                        <img src="images/internet on.jpg" alt="Internet Connection">
+                    </div>
+                    <div class="image-label">Internet Connection</div>
+                </div>
+
+                <!-- Image 3 -->
+                <div class="flow-item">
+                    <div class="image-placeholder">
+                        <img src="images/youtube search.jpg" alt="YouTube Search">
+                    </div>
+                    <div class="image-label">YouTube Search</div>
+                </div>
+
+                <!-- Image 4 -->
+                <div class="flow-item">
+                    <div class="image-placeholder">
+                        <img src="images/youtube server.jpg" alt="YouTube Server">
+                    </div>
+                    <div class="image-label">YouTube Server</div>
+                    <div class="server-ip">IP: 199.223.232.2</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // JavaScript to handle responsive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileFlowIndicator = document.querySelector('.mobile-flow-indicator');
+            
+            function checkScreenSize() {
+                if (window.innerWidth <= 768) {
+                    // Show mobile indicator and hide complex animations
+                    mobileFlowIndicator.style.display = 'block';
+                    
+                    // Add pulsing animation for mobile
+                    mobileFlowIndicator.style.animation = 'pulse 2s infinite';
+                    
+                    // Create keyframes for pulse animation
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        @keyframes pulse {
+                            0% { opacity: 0.6; }
+                            50% { opacity: 1; }
+                            100% { opacity: 0.6; }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                } else {
+                    mobileFlowIndicator.style.display = 'none';
+                }
+            }
+            
+            // Check on load
+            checkScreenSize();
+            
+            // Check on resize
+            window.addEventListener('resize', checkScreenSize);
+        });
+    </script>
+</body>
+</html>
