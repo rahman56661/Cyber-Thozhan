@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metropolitan Area Network (MAN)</title>
+    <title>Wide Area Network (WAN)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -35,8 +35,8 @@
             background: #3a3a3a;
             border-radius: 15px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-            border-left: 5px solid #4a9eff;
-            border-right: 5px solid #4a9eff;
+            border-left: 5px solid #ff6b4a;
+            border-right: 5px solid #ff6b4a;
             position: relative;
             overflow: hidden;
         }
@@ -55,7 +55,7 @@
             position: absolute;
             width: 10px;
             height: 10px;
-            background-color: #4a9eff;
+            background-color: #ff6b4a;
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
@@ -63,7 +63,7 @@
         .connection {
             position: absolute;
             height: 2px;
-            background-color: #4a9eff;
+            background-color: #ff6b4a;
             transform-origin: left center;
         }
         
@@ -79,7 +79,7 @@
         }
         
         h1 {
-            color: #4a9eff;
+            color: #ff6b4a;
             margin-bottom: 15px;
             font-size: 2.8rem;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -94,7 +94,7 @@
         }
         
         h2 {
-            color: #6bb2ff;
+            color: #ff8c6b;
             margin: 30px 0 20px;
             padding-bottom: 10px;
             border-bottom: 2px solid #4a4a4a;
@@ -102,7 +102,7 @@
         }
         
         h3 {
-            color: #8bc6ff;
+            color: #ffa98c;
             margin: 20px 0 15px;
             font-size: 1.4rem;
         }
@@ -117,7 +117,7 @@
             padding: 20px;
             border-radius: 10px;
             margin: 20px 0;
-            border-left: 5px solid #4a9eff;
+            border-left: 5px solid #ff6b4a;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             animation: slideInLeft 0.8s ease;
         }
@@ -125,7 +125,7 @@
         .definition {
             font-size: 1.3rem;
             font-weight: bold;
-            color: #4a9eff;
+            color: #ff6b4a;
             text-align: center;
         }
         
@@ -156,7 +156,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(74, 158, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 74, 0.2), transparent);
             transition: left 0.5s;
         }
         
@@ -172,7 +172,7 @@
         .network-type i {
             font-size: 2.5rem;
             margin-bottom: 15px;
-            color: #4a9eff;
+            color: #ff6b4a;
         }
         
         .network-type h3 {
@@ -203,7 +203,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, #4a9eff, #6bb2ff);
+            background: linear-gradient(90deg, #ff6b4a, #ff8c6b);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.3s ease;
@@ -245,7 +245,7 @@
         }
         
         .example-card h4 {
-            color: #6bb2ff;
+            color: #ff8c6b;
             margin-bottom: 15px;
             font-size: 1.3rem;
             display: flex;
@@ -254,7 +254,7 @@
         
         .example-card h4 i {
             margin-right: 10px;
-            color: #4a9eff;
+            color: #ff6b4a;
         }
         
         .pros-cons {
@@ -309,7 +309,7 @@
             border-radius: 15px;
             margin-top: 40px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-            border-left: 5px solid #4a9eff;
+            border-left: 5px solid #ff6b4a;
             position: relative;
             overflow: hidden;
         }
@@ -321,7 +321,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(74, 158, 255, 0.05)"/></svg>');
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255, 107, 74, 0.05)"/></svg>');
             background-size: cover;
         }
         
@@ -347,7 +347,7 @@
         .icon {
             display: inline-block;
             margin-right: 10px;
-            color: #4a9eff;
+            color: #ff6b4a;
         }
         
         .floating-network {
@@ -364,9 +364,41 @@
             position: absolute;
             width: 6px;
             height: 6px;
-            background-color: #4a9eff;
+            background-color: #ff6b4a;
             border-radius: 50%;
             animation: pulse 3s infinite;
+        }
+        
+        .coverage-animation {
+            width: 100%;
+            height: 200px;
+            background: #2c2c2c;
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .coverage-map {
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M10,30 C30,10 70,10 90,30 C70,50 30,50 10,30 Z" fill="none" stroke="%23333" stroke-width="1"/><circle cx="50" cy="30" r="3" fill="%23ff6b4a"/><circle cx="30" cy="50" r="3" fill="%23ff6b4a"/><circle cx="70" cy="50" r="3" fill="%23ff6b4a"/></svg>');
+            background-size: cover;
+            position: relative;
+        }
+        
+        .coverage-pulse {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255, 107, 74, 0.3);
+            animation: coveragePulse 3s infinite;
+        }
+        
+        @keyframes coveragePulse {
+            0% { transform: scale(0.5); opacity: 1; }
+            100% { transform: scale(5); opacity: 0; }
         }
         
         @keyframes float {
@@ -423,16 +455,16 @@
         <header>
             <div class="network-animation" id="headerAnimation"></div>
             <div class="header-content">
-                <h1><i class="fas fa-network-wired icon"></i> Metropolitan Area Network (MAN)</h1>
-                <p class="tagline">Connecting Local Networks Across Cities</p>
-                <p class="definition">MAN = Metropolitan Area Network</p>
-                <p>A network that covers a larger area than a LAN but smaller than a WAN.</p>
+                <h1><i class="fas fa-globe-americas icon"></i> Wide Area Network (WAN)</h1>
+                <p class="tagline">Connecting Networks Across Countries and Continents</p>
+                <p class="definition">WAN = Wide Area Network</p>
+                <p>A network that covers very large geographical areas like countries, continents, or the entire world.</p>
             </div>
         </header>
         
         <section>
             <h2><i class="fas fa-fire icon"></i> Simple Explanation</h2>
-            <p>A Metropolitan Area Network connects multiple Local Area Networks across a city or metropolitan area.</p>
+            <p>A Wide Area Network connects multiple Local Area Networks and Metropolitan Area Networks across countries, continents, or worldwide.</p>
             
             <div class="comparison">
                 <div class="network-type">
@@ -448,128 +480,150 @@
                 <div class="network-type">
                     <i class="fas fa-globe"></i>
                     <h3>WAN</h3>
-                    <p>Country or global coverage</p>
+                    <p>Country, continent or global coverage</p>
                 </div>
             </div>
             
             <div class="highlight">
-                <p><i class="fas fa-info-circle icon"></i> MAN serves as an intermediate network level between LAN and WAN.</p>
+                <p><i class="fas fa-info-circle icon"></i> WAN is the largest network category, connecting LANs and MANs across vast distances.</p>
             </div>
         </section>
         
         <section>
-            <h2><i class="fas fa-ruler-combined icon"></i> MAN Coverage Area</h2>
-            <p>Approximately: 5 km to 50 km</p>
-            <p>Can cover an entire city, groups of buildings, industrial areas, or IT parks.</p>
+            <h2><i class="fas fa-ruler-combined icon"></i> WAN Coverage Area</h2>
+            <p>From 100 km to entire world coverage</p>
+            <p>Can cover countries, continents, or connect networks globally.</p>
+            
+            <div class="coverage-animation">
+                <div class="coverage-map">
+                    <div class="coverage-pulse" style="top: 30%; left: 50%;"></div>
+                    <div class="coverage-pulse" style="top: 50%; left: 30%; animation-delay: 1s;"></div>
+                    <div class="coverage-pulse" style="top: 50%; left: 70%; animation-delay: 2s;"></div>
+                </div>
+            </div>
         </section>
         
         <section>
-            <h2><i class="fas fa-list-alt icon"></i> MAN Examples (Real World)</h2>
+            <h2><i class="fas fa-list-alt icon"></i> WAN Examples (Real World)</h2>
             <div class="examples">
                 <div class="example-card">
                     <div class="example-image">
-                        <img src="./images/city-wide-internet-connection.jpg" alt="City Internet Network" onerror="this.style.display='none'; this.parentNode.innerHTML='City Internet Network<br><small>Image not available</small>';">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="The Internet">
                     </div>
-                    <h4><i class="fas fa-wifi"></i> City-wide Internet Network</h4>
-                    <p>Internet service providers like Comcast, Spectrum, or AT&T deploying broadband infrastructure across a metropolitan area.</p>
+                    <h4><i class="fas fa-network-wired"></i> The Internet (World's Biggest WAN)</h4>
+                    <p>Millions of networks worldwide connected together. YouTube, Google, WhatsApp all operate over this global WAN.</p>
                 </div>
                 <div class="example-card">
                     <div class="example-image">
-                        <img src="https://images.unsplash.com/photo-1519817914152-22d216bb9170?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Metro Rail Wi-Fi">
+                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Banking Networks">
                     </div>
-                    <h4><i class="fas fa-train"></i> Metro Rail Wi-Fi</h4>
-                    <p>Seamless wireless network covering entire metro rail systems and stations across a city.</p>
+                    <h4><i class="fas fa-university"></i> Banking Networks</h4>
+                    <p>SBI, HDFC, ICICI banks connecting branches across cities, states, and international locations through WAN.</p>
                 </div>
                 <div class="example-card">
                     <div class="example-image">
-                        <img src="./images/campus-area-network.jpg" alt="University Campus Network" onerror="this.style.display='none'; this.parentNode.innerHTML='University Campus Network<br><small>Image not available</small>';">
+                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="MNC Companies">
                     </div>
-                    <h4><i class="fas fa-university"></i> University Campus Network</h4>
-                    <p>Connecting multiple campus buildings, libraries, and administrative centers across a university town.</p>
+                    <h4><i class="fas fa-building"></i> MNC Companies Private WAN</h4>
+                    <p>TCS, Infosys, Amazon, Google connecting offices across India, UK, US, and Singapore using VPN and leased lines.</p>
                 </div>
                 <div class="example-card">
                     <div class="example-image">
-                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Government Office Network">
+                        <img src="https://images.unsplash.com/photo-1550565118-3a14e8d0386f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="ATM Network">
                     </div>
-                    <h4><i class="fas fa-building"></i> Government Office Network</h4>
-                    <p>Interconnecting various government buildings like city hall, courts, and public service offices within a metropolitan area.</p>
+                    <h4><i class="fas fa-credit-card"></i> ATM Network</h4>
+                    <p>Bank ATM machines across entire countries connected to central servers through WAN infrastructure.</p>
                 </div>
                 <div class="example-card">
                     <div class="example-image">
-                        <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cable TV Network">
+                        <img src="https://images.unsplash.com/photo-1587560699334-cc4ff634909a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Telecom Networks">
                     </div>
-                    <h4><i class="fas fa-tv"></i> Cable TV Network</h4>
-                    <p>Distribution network for cable television services across a city or metropolitan region.</p>
+                    <h4><i class="fas fa-broadcast-tower"></i> Telecom Company Networks</h4>
+                    <p>Jio, Airtel towers and data centers working across states and countries using WAN technology.</p>
                 </div>
             </div>
         </section>
         
         <section>
-            <h2><i class="fas fa-tasks icon"></i> MAN Use Cases</h2>
+            <h2><i class="fas fa-sitemap icon"></i> WAN Structure & Technology</h2>
+            <p>WAN primarily uses these technologies:</p>
             <ul>
-                <li><strong>Interconnecting multiple LANs:</strong> Connecting office networks across different locations in the same city.</li>
-                <li><strong>High-speed internet distribution:</strong> ISPs using MAN infrastructure to deliver broadband services across urban areas.</li>
-                <li><strong>Public Wi-Fi services:</strong> Municipal wireless networks providing internet access across city centers.</li>
-                <li><strong>CCTV Surveillance systems:</strong> Connecting security cameras across a city for smart city initiatives.</li>
-                <li><strong>Educational networks:</strong> Connecting schools and educational institutions within a district.</li>
+                <li><strong>Fiber optic cables</strong> (including underwater submarine cables)</li>
+                <li><strong>Satellite links</strong> for remote locations</li>
+                <li><strong>Microwave towers</strong> for wireless connections</li>
+                <li><strong>Leased lines</strong> from telecom providers</li>
+                <li><strong>MPLS networks</strong> for efficient data routing</li>
+            </ul>
+            <p>WAN infrastructure is typically created and maintained by ISPs and large telecom companies.</p>
+        </section>
+        
+        <section>
+            <h2><i class="fas fa-tasks icon"></i> WAN Use Cases</h2>
+            <ul>
+                <li><strong>Global Communication:</strong> Email, WhatsApp, Instagram — connecting people worldwide</li>
+                <li><strong>International Business Networks:</strong> Companies with offices in different countries</li>
+                <li><strong>Cloud Services:</strong> AWS, Google Cloud, Azure data storage accessed globally</li>
+                <li><strong>Online Gaming:</strong> PUBG, Free Fire, Valorant global servers</li>
+                <li><strong>VPN Connections:</strong> Remote employees connecting to office networks securely</li>
+                <li><strong>Disaster Recovery:</strong> Data replication across geographically dispersed locations</li>
             </ul>
         </section>
         
         <section>
-            <h2><i class="fas fa-balance-scale icon"></i> MAN Advantages & Disadvantages</h2>
+            <h2><i class="fas fa-balance-scale icon"></i> WAN Advantages & Disadvantages</h2>
             <div class="pros-cons">
                 <div class="pros">
                     <h3><i class="fas fa-thumbs-up"></i> Advantages</h3>
                     <ul>
-                        <li>Larger geographical coverage than LAN</li>
-                        <li>High-speed connectivity using fiber optics</li>
-                        <li>Better reliability and uptime</li>
-                        <li>Efficient interconnection of multiple LANs</li>
-                        <li>Cost-effective for city-wide services</li>
-                        <li>Supports high bandwidth applications</li>
+                        <li>Huge geographical coverage</li>
+                        <li>Global access to resources</li>
+                        <li>Ideal solution for large multinational companies</li>
+                        <li>High reliability with multiple redundant routes</li>
+                        <li>Supports cloud computing and international communication</li>
+                        <li>Centralized data management</li>
                     </ul>
                 </div>
                 <div class="cons">
                     <h3><i class="fas fa-thumbs-down"></i> Disadvantages</h3>
                     <ul>
-                        <li>Higher setup costs (fiber cables, networking equipment)</li>
-                        <li>Complex maintenance requirements</li>
-                        <li>Potential for network congestion during peak usage</li>
-                        <li>Increased security challenges</li>
-                        <li>Requires specialized technical expertise</li>
-                        <li>Regulatory and right-of-way issues for infrastructure</li>
+                        <li>Very expensive setup and infrastructure</li>
+                        <li>High maintenance costs (satellites, fiber cables)</li>
+                        <li>Lower speeds compared to LAN (due to distance)</li>
+                        <li>Higher latency (data travels long distances)</li>
+                        <li>Complex security requirements</li>
+                        <li>Dependency on third-party service providers</li>
                     </ul>
                 </div>
             </div>
         </section>
-        
-        <!--<section class="summary">
+        <!--
+        <section class="summary">
             <div class="summary-content">
                 <h2><i class="fas fa-file-alt icon"></i> Summary</h2>
-                <p>A Metropolitan Area Network (MAN) is a large computer network that spans a metropolitan area, connecting multiple Local Area Networks (LANs). It serves as an intermediate network between LANs and Wide Area Networks (WANs).</p>
+                <p>A Wide Area Network (WAN) is a telecommunications network that extends over a large geographical area, connecting multiple Local Area Networks (LANs) and Metropolitan Area Networks (MANs).</p>
                 
                 <p><strong>Key Points:</strong></p>
                 <ul>
-                    <li>MAN covers a larger geographical area than LAN but smaller than WAN</li>
-                    <li>Typically spans 5-50 km, covering a city or metropolitan region</li>
-                    <li>Uses high-speed transmission media like fiber optics</li>
-                    <li>Enables efficient resource sharing across multiple locations</li>
-                    <li>Commonly deployed by ISPs, governments, and large organizations</li>
+                    <li>WAN covers the largest geographical area among network types</li>
+                    <li>Typically spans hundreds to thousands of kilometers</li>
+                    <li>Uses various transmission media including fiber optics, satellites, and microwave</li>
+                    <li>Enables global communication and resource sharing</li>
+                    <li>Primarily implemented by ISPs, telecom companies, and large organizations</li>
                 </ul>
                 
                 <p><strong>Real-world examples:</strong></p>
                 <ul>
-                    <li>City-wide fiber internet networks</li>
-                    <li>Metro area Wi-Fi systems</li>
-                    <li>University campus networks</li>
-                    <li>Smart city surveillance systems</li>
-                    <li>Cable television distribution networks</li>
+                    <li>The Internet - the world's largest WAN</li>
+                    <li>International banking networks</li>
+                    <li>Multinational corporation networks</li>
+                    <li>Telecom infrastructure</li>
+                    <li>Global cloud services</li>
                 </ul>
             </div>
         </section>-->
         
         <footer>
-            <p>Metropolitan Area Network (MAN) - Network Infrastructure Information</p>
+            <p>Wide Area Network (WAN) - Global Network Infrastructure</p>
             <p><i class="fas fa-laptop-code"></i> Created with HTML, CSS, and JavaScript</p>
         </footer>
     </div>
@@ -578,7 +632,7 @@
         // Create network animation for header
         function createHeaderAnimation() {
             const container = document.getElementById('headerAnimation');
-            const nodeCount = 15;
+            const nodeCount = 20;
             
             for (let i = 0; i < nodeCount; i++) {
                 const node = document.createElement('div');
@@ -593,7 +647,7 @@
             const nodes = container.querySelectorAll('.node');
             nodes.forEach((node1, index1) => {
                 nodes.forEach((node2, index2) => {
-                    if (index1 < index2 && Math.random() > 0.7) {
+                    if (index1 < index2 && Math.random() > 0.6) {
                         const x1 = parseFloat(node1.style.left) / 100 * container.offsetWidth;
                         const y1 = parseFloat(node1.style.top) / 100 * container.offsetHeight;
                         const x2 = parseFloat(node2.style.left) / 100 * container.offsetWidth;
@@ -601,7 +655,7 @@
                         
                         const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
                         
-                        if (distance < 200) {
+                        if (distance < 250) {
                             const connection = document.createElement('div');
                             connection.className = 'connection';
                             connection.style.width = `${distance}px`;
@@ -611,7 +665,7 @@
                             const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
                             connection.style.transform = `rotate(${angle}deg)`;
                             
-                            connection.style.opacity = 0.3 + Math.random() * 0.4;
+                            connection.style.opacity = 0.2 + Math.random() * 0.3;
                             container.appendChild(connection);
                         }
                     }
@@ -622,7 +676,7 @@
         // Create floating network animation
         function createFloatingNetwork() {
             const container = document.getElementById('floatingNetwork');
-            const nodeCount = 8;
+            const nodeCount = 12;
             
             for (let i = 0; i < nodeCount; i++) {
                 const node = document.createElement('div');
