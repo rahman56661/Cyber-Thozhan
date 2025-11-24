@@ -1,6 +1,6 @@
 @echo off
 echo Starting Git deployment process...
-
+cd C:\Panther\Video_Generation
 echo Step 1: Running 'git add .'
 git add .
 if %errorlevel% neq 0 (
