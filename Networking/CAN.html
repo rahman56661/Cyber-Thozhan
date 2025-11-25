@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Area Network (CAN) - Interactive Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --highlight-color: #e74c3c;
+            --success-color: #2ecc71;
+            --text-color: #ecf0f1;
+            --card-bg: #3a516e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(52, 152, 219, 0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--accent-color);
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .comparison {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+        
+        .network-type {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 2rem;
+            margin: 1rem;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .network-type:hover {
+            transform: scale(1.05);
+        }
+        
+        .network-type.lan {
+            border-top: 5px solid #3498db;
+        }
+        
+        .network-type.can {
+            border-top: 5px solid #e74c3c;
+        }
+        
+        .network-type.man {
+            border-top: 5px solid #2ecc71;
+        }
+        
+        .network-type h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .network-type p {
+            font-size: 1rem;
+        }
+        
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .example-item {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .example-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .example-img {
+            height: 200px;
+            background-color: #1a2530;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .example-img i {
+            font-size: 4rem;
+            color: var(--accent-color);
+            z-index: 2;
+        }
+        
+        .example-img::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(52, 152, 219, 0.3), rgba(231, 76, 60, 0.3));
+            opacity: 0.7;
+        }
+        
+        .example-content {
+            padding: 1.5rem;
+        }
+        
+        .example-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .advantages-disadvantages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .pros-cons {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .pros-cons h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+        
+        .pros-cons ul {
+            list-style-type: none;
+        }
+        
+        .pros-cons li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        
+        .pros-cons li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .advantages li::before {
+            background-color: var(--success-color);
+        }
+        
+        .disadvantages li::before {
+            background-color: var(--highlight-color);
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .network-animation {
+            width: 100%;
+            height: 400px;
+            background-color: #1a2530;
+            border-radius: 10px;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .building {
+            position: absolute;
+            bottom: 0;
+            width: 80px;
+            background-color: var(--secondary-color);
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 10px;
+            z-index: 2;
+            box-shadow: 0 -5px 10px rgba(0,0,0,0.3);
+        }
+        
+        .window {
+            width: 15px;
+            height: 15px;
+            background-color: var(--accent-color);
+            margin: 5px;
+            border-radius: 2px;
+            animation: windowGlow 3s infinite alternate;
+        }
+        
+        .connection {
+            position: absolute;
+            height: 3px;
+            background-color: var(--accent-color);
+            z-index: 1;
+        }
+        
+        .data-packet {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--highlight-color);
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 0 10px var(--highlight-color);
+        }
+        
+        .server-room {
+            position: absolute;
+            width: 100px;
+            height: 60px;
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+            font-weight: bold;
+            z-index: 3;
+            box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+            animation: serverPulse 2s infinite;
+        }
+        
+        .network-label {
+            position: absolute;
+            color: var(--text-color);
+            font-weight: bold;
+            z-index: 4;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+        }
+        
+        .interactive-demo {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .demo-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .demo-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+        
+        .demo-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .demo-info {
+            background-color: rgba(0,0,0,0.2);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes windowGlow {
+            from {
+                opacity: 0.3;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes serverPulse {
+            0% {
+                box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(52, 152, 219, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+            }
+        }
+        
+        @keyframes dataFlow {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .comparison {
+                flex-direction: column;
+            }
+            
+            .network-type {
+                min-width: 100%;
+            }
+            
+            .demo-controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Campus Area Network (CAN)</h1>
+            <p class="tagline">Connecting Multiple Buildings Within a Campus Environment</p>
+        </div>
+    </header>
+
+    <section id="introduction">
+        <div class="container">
+            <h2>What is a Campus Area Network?</h2>
+            <p>A <strong>Campus Area Network (CAN)</strong> is a computer network that interconnects multiple Local Area Networks (LANs) within a limited geographical area such as a university campus, corporate campus, or any large facility with multiple buildings.</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3><i class="fas fa-network-wired"></i> Simple Meaning</h3>
+                    <p>When LAN networks from multiple buildings in a campus are connected together, it forms a CAN. This allows seamless communication and resource sharing across the entire campus.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-building"></i> Campus Definition</h3>
+                    <p>A "campus" refers to any area with multiple buildings in close proximity, such as:</p>
+                    <ul>
+                        <li><i class="fas fa-graduation-cap"></i> College/University campuses</li>
+                        <li><i class="fas fa-laptop-code"></i> IT parks</li>
+                        <li><i class="fas fa-hospital"></i> Hospital complexes</li>
+                        <li><i class="fas fa-shield-alt"></i> Military bases</li>
+                        <li><i class="fas fa-landmark"></i> Government complexes</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="interactive-demo">
+                <h3><i class="fas fa-play-circle"></i> Interactive CAN Demo</h3>
+                <p>Click the buttons below to see how different components work in a Campus Area Network:</p>
+                
+                <div class="demo-controls">
+                    <button class="demo-btn" onclick="showDataFlow()">Show Data Flow</button>
+                    <button class="demo-btn" onclick="showResourceSharing()">Resource Sharing</button>
+                    <button class="demo-btn" onclick="showCampusWiFi()">Campus WiFi</button>
+                    <button class="demo-btn" onclick="resetAnimation()">Reset Animation</button>
+                </div>
+                
+                <div class="demo-info" id="dataFlowInfo">
+                    <h4>Data Flow in CAN</h4>
+                    <p>Data packets travel between buildings through high-speed connections, allowing seamless communication across the campus.</p>
+                </div>
+                
+                <div class="demo-info" id="resourceSharingInfo">
+                    <h4>Resource Sharing</h4>
+                    <p>All buildings can access centralized resources like servers, printers, and storage devices located in the data center.</p>
+                </div>
+                
+                <div class="demo-info" id="campusWiFiInfo">
+                    <h4>Campus WiFi</h4>
+                    <p>Wireless access points throughout the campus provide seamless connectivity, allowing users to roam between buildings without losing connection.</p>
+                </div>
+            </div>
+            
+            <div class="network-animation" id="networkAnimation">
+                <!-- Animation will be created with JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="comparison">
+        <div class="container">
+            <h2>Network Scale Comparison</h2>
+            <p>Understanding where CAN fits in the network hierarchy:</p>
+            
+            <div class="comparison">
+                <div class="network-type lan">
+                    <h3><i class="fas fa-home"></i> LAN</h3>
+                    <p><strong>Local Area Network</strong></p>
+                    <p>Single building or small area</p>
+                    <p>Coverage: Up to 1 km</p>
+                </div>
+                
+                <div class="network-type can pulse">
+                    <h3><i class="fas fa-building"></i> CAN</h3>
+                    <p><strong>Campus Area Network</strong></p>
+                    <p>Multiple buildings in a campus</p>
+                    <p>Coverage: 1-5 km (up to 10 km)</p>
+                </div>
+                
+                <div class="network-type man">
+                    <h3><i class="fas fa-city"></i> MAN</h3>
+                    <p><strong>Metropolitan Area Network</strong></p>
+                    <p>City-wide network</p>
+                    <p>Coverage: 5-50 km</p>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 2rem;"><strong>LAN &lt; CAN &lt; MAN</strong> - CAN bridges the gap between building-level and city-wide networks.</p>
+        </div>
+    </section>
+
+    <section id="coverage">
+        <div class="container">
+            <h2>CAN Coverage Area</h2>
+            <p>Typically spans between <strong>1 km to 5 km</strong>, though global standards sometimes mention coverage up to 10 km depending on the campus size and requirements.</p>
+            
+            <div class="card">
+                <h3><i class="fas fa-expand-arrows-alt"></i> Key Characteristics</h3>
+                <p>CANs are designed to provide high-speed connectivity across multiple buildings while maintaining the performance and security benefits of a localized network.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="examples">
+        <div class="container">
+            <h2>Real-World CAN Examples</h2>
+            <p>Here are common implementations of Campus Area Networks:</p>
+            
+            <div class="example-grid">
+                <div class="example-item">
+                    <div class="example-img">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="example-content">
+                        <h3>University Campus</h3>
+                        <p>Connecting various campus buildings:</p>
+                        <ul>
+                            <li>Admin building</li>
+                            <li>Engineering block</li>
+                            <li>Library</li>
+                            <li>Hostels</li>
+                            <li>Research centers</li>
+                        </ul>
+                        <p><strong>Usage:</strong> Shared servers, campus Wi-Fi, resource sharing, centralized management systems.</p>
+                    </div>
+                </div>
+                
+                <div class="example-item">
+                    <div class="example-img">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="example-content">
+                        <h3>IT Park Network</h3>
+                        <p>Examples: TIDEL Park, Manyata Tech Park, DLF IT Park</p>
+                        <p>Multiple blocks (A, B, C, D) each with their own LAN, interconnected to form a CAN.</p>
+                        <p><strong>Usage:</strong> High-speed data transfer, shared resources, centralized security.</p>
+                    </div>
+                </div>
+                
+                <div class="example-item">
+                    <div class="example-img">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <div class="example-content">
+                        <h3>Hospital Complex</h3>
+                        <p>Large hospital campuses with multiple specialized buildings:</p>
+                        <ul>
+                            <li>OP building</li>
+                            <li>IP building</li>
+                            <li>Emergency department</li>
+                            <li>Radiology center</li>
+                            <li>Pharmacy</li>
+                        </ul>
+                        <p><strong>Usage:</strong> Patient records, medical imaging, billing systems.</p>
+                    </div>
+                </div>
+                
+                <div class="example-item">
+                    <div class="example-img">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="example-content">
+                        <h3>Government / Military Campus</h3>
+                        <p>Large government or military installations:</p>
+                        <ul>
+                            <li>Police HQ</li>
+                            <li>Data centers</li>
+                            <li>Training facilities</li>
+                            <li>Control rooms</li>
+                        </ul>
+                        <p><strong>Usage:</strong> Secure communications, surveillance systems, centralized command.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="usecases">
+        <div class="container">
+            <h2>CAN Use Cases</h2>
+            <p>Campus Area Networks serve multiple important functions:</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3><i class="fas fa-share-alt"></i> Resource Sharing</h3>
+                    <p>Servers, printers, scanners and other resources can be shared across all buildings in the campus.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-wifi"></i> Campus WiFi</h3>
+                    <p>Seamless WiFi roaming across the entire campus with single authentication.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-database"></i> Data Center Access</h3>
+                    <p>All buildings can access centralized servers and data vaults with high-speed connectivity.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-tachometer-alt"></i> High-Speed Communication</h3>
+                    <p>Fiber optic cables provide near-LAN speeds across the entire campus.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-video"></i> Security & CCTV</h3>
+                    <p>Campus-wide CCTV systems connected to a central control room for comprehensive security monitoring.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pros-cons">
+        <div class="container">
+            <h2>Advantages & Disadvantages</h2>
+            
+            <div class="advantages-disadvantages">
+                <div class="pros-cons">
+                    <h3><i class="fas fa-thumbs-up"></i> Advantages of CAN</h3>
+                    <ul class="advantages">
+                        <li>High-speed internal network with performance close to LAN</li>
+                        <li>Lower cost compared to MAN/WAN implementations</li>
+                        <li>Enhanced security as the network is limited to campus area</li>
+                        <li>Centralized management and administration</li>
+                        <li>Efficient resource sharing across multiple buildings</li>
+                        <li>Scalable to accommodate campus growth</li>
+                    </ul>
+                </div>
+                
+                <div class="pros-cons">
+                    <h3><i class="fas fa-thumbs-down"></i> Disadvantages of CAN</h3>
+                    <ul class="disadvantages">
+                        <li>Limited to campus geographical area</li>
+                        <li>Initial setup costs for fiber cables and access points</li>
+                        <li>Requires regular maintenance and administration</li>
+                        <li>Single point of failure if central infrastructure fails</li>
+                        <li>Can be complex to design for optimal performance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Campus Area Network (CAN) - Connecting Buildings for Seamless Communication</p>
+            <p>© 2023 Network Infrastructure Guide</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create network animation
+        document.addEventListener('DOMContentLoaded', function() {
+            createNetworkAnimation();
+        });
+        
+        function createNetworkAnimation() {
+            const animationContainer = document.getElementById('networkAnimation');
+            animationContainer.innerHTML = '';
+            
+            // Create buildings
+            const buildings = [
+                { left: '5%', height: '120px', windows: 4, label: 'Admin Block' },
+                { left: '25%', height: '160px', windows: 6, label: 'Library' },
+                { left: '45%', height: '100px', windows: 3, label: 'Lab' },
+                { left: '65%', height: '140px', windows: 5, label: 'Hostel' },
+                { left: '85%', height: '180px', windows: 7, label: 'Research Center' }
+            ];
+            
+            // Create server room
+            const serverRoom = document.createElement('div');
+            serverRoom.className = 'server-room';
+            serverRoom.style.left = '45%';
+            serverRoom.style.bottom = '250px';
+            serverRoom.innerHTML = 'Data Center';
+            animationContainer.appendChild(serverRoom);
+            
+            buildings.forEach(building => {
+                const buildingEl = document.createElement('div');
+                buildingEl.className = 'building';
+                buildingEl.style.left = building.left;
+                buildingEl.style.height = building.height;
+                
+                for (let i = 0; i < building.windows; i++) {
+                    const windowEl = document.createElement('div');
+                    windowEl.className = 'window';
+                    buildingEl.appendChild(windowEl);
+                }
+                
+                animationContainer.appendChild(buildingEl);
+                
+                // Add building label
+                const label = document.createElement('div');
+                label.className = 'network-label';
+                label.style.left = `calc(${building.left} - 20px)`;
+                label.style.bottom = `calc(${building.height} + 10px)`;
+                label.textContent = building.label;
+                animationContainer.appendChild(label);
+                
+                // Create connection to server room
+                const connection = document.createElement('div');
+                connection.className = 'connection';
+                
+                const buildingPos = parseFloat(building.left);
+                const serverPos = 45;
+                
+                connection.style.left = `calc(${Math.min(buildingPos, serverPos)}% + 40px)`;
+                connection.style.width = `calc(${Math.abs(serverPos - buildingPos)}% - 80px)`;
+                connection.style.top = '250px';
+                
+                animationContainer.appendChild(connection);
+            });
+            
+            // Create initial data packets
+            createDataPackets();
+        }
+        
+        function createDataPackets() {
+            const animationContainer = document.getElementById('networkAnimation');
+            const connections = animationContainer.getElementsByClassName('connection');
+            
+            Array.from(connections).forEach(connection => {
+                for (let i = 0; i < 2; i++) {
+                    setTimeout(() => {
+                        const packet = document.createElement('div');
+                        packet.className = 'data-packet';
+                        packet.style.left = connection.style.left;
+                        packet.style.top = '247px';
+                        
+                        animationContainer.appendChild(packet);
+                        
+                        // Animate packet
+                        let pos = 0;
+                        const interval = setInterval(() => {
+                            pos += 1;
+                            const leftValue = connection.style.left;
+                            const widthValue = connection.style.width;
+                            
+                            packet.style.left = `calc(${leftValue} + ${pos}% * (${widthValue}) / 100)`;
+                            
+                            if (pos >= 100) {
+                                clearInterval(interval);
+                                packet.remove();
+                            }
+                        }, 20);
+                    }, i * 1500);
+                }
+            });
+        }
+        
+        function showDataFlow() {
+            resetInfo();
+            document.getElementById('dataFlowInfo').style.display = 'block';
+            createDataPackets();
+        }
+        
+        function showResourceSharing() {
+            resetInfo();
+            document.getElementById('resourceSharingInfo').style.display = 'block';
+            
+            const animationContainer = document.getElementById('networkAnimation');
+            const serverRoom = animationContainer.querySelector('.server-room');
+            
+            // Add resource icons around server room
+            const resources = ['<i class="fas fa-server"></i>', '<i class="fas fa-hdd"></i>', '<i class="fas fa-print"></i>'];
+            
+            resources.forEach((resource, index) => {
+                const resourceEl = document.createElement('div');
+                resourceEl.innerHTML = resource;
+                resourceEl.style.position = 'absolute';
+                resourceEl.style.color = '#2ecc71';
+                resourceEl.style.fontSize = '1.5rem';
+                resourceEl.style.left = `${45 + (index - 1) * 10}%`;
+                resourceEl.style.bottom = '300px';
+                resourceEl.style.zIndex = '5';
+                resourceEl.style.animation = 'pulse 2s infinite';
+                resourceEl.id = 'resource' + index;
+                animationContainer.appendChild(resourceEl);
+            });
+        }
+        
+        function showCampusWiFi() {
+            resetInfo();
+            document.getElementById('campusWiFiInfo').style.display = 'block';
+            
+            const animationContainer = document.getElementById('networkAnimation');
+            
+            // Add WiFi signals
+            for (let i = 0; i < 5; i++) {
+                const wifiSignal = document.createElement('div');
+                wifiSignal.innerHTML = '<i class="fas fa-wifi"></i>';
+                wifiSignal.style.position = 'absolute';
+                wifiSignal.style.color = '#3498db';
+                wifiSignal.style.fontSize = '2rem';
+                wifiSignal.style.left = `${10 + i * 20}%`;
+                wifiSignal.style.bottom = '200px';
+                wifiSignal.style.zIndex = '5';
+                wifiSignal.style.animation = 'pulse 2s infinite';
+                wifiSignal.id = 'wifi' + i;
+                animationContainer.appendChild(wifiSignal);
+            }
+        }
+        
+        function resetAnimation() {
+            resetInfo();
+            createNetworkAnimation();
+        }
+        
+        function resetInfo() {
+            const infoSections = document.querySelectorAll('.demo-info');
+            infoSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Remove additional elements
+            const animationContainer = document.getElementById('networkAnimation');
+            const resources = document.querySelectorAll('[id^="resource"]');
+            resources.forEach(resource => resource.remove());
+            
+            const wifis = document.querySelectorAll('[id^="wifi"]');
+            wifis.forEach(wifi => wifi.remove());
+        }
+    </script>
+</body>
+</html>
