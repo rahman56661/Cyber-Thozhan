@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Topology - Complete Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --highlight-color: #e74c3c;
+            --success-color: #2ecc71;
+            --text-color: #ecf0f1;
+            --card-bg: #3a516e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(52, 152, 219, 0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--accent-color);
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .example-item {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .example-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .example-img {
+            height: 200px;
+            background-color: #1a2530;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .example-img i {
+            font-size: 4rem;
+            color: var(--accent-color);
+            z-index: 2;
+        }
+        
+        .example-img::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(52, 152, 219, 0.3), rgba(231, 76, 60, 0.3));
+            opacity: 0.7;
+        }
+        
+        .example-content {
+            padding: 1.5rem;
+        }
+        
+        .example-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .advantages-disadvantages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .pros-cons {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .pros-cons h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+        
+        .pros-cons ul {
+            list-style-type: none;
+        }
+        
+        .pros-cons li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        
+        .pros-cons li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .advantages li::before {
+            background-color: var(--success-color);
+        }
+        
+        .disadvantages li::before {
+            background-color: var(--highlight-color);
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .topology-animation {
+            width: 100%;
+            height: 400px;
+            background-color: #1a2530;
+            border-radius: 10px;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .bus-cable {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: var(--accent-color);
+            z-index: 1;
+        }
+        
+        .device {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .device i {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+        
+        .device-label {
+            font-size: 0.7rem;
+            text-align: center;
+        }
+        
+        .connection {
+            position: absolute;
+            width: 4px;
+            background-color: var(--accent-color);
+            z-index: 1;
+        }
+        
+        .data-packet {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: var(--highlight-color);
+            border-radius: 50%;
+            z-index: 3;
+            box-shadow: 0 0 10px var(--highlight-color);
+        }
+        
+        .terminator {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--highlight-color);
+            border-radius: 50%;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+        }
+        
+        .interactive-demo {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .demo-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .demo-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+        
+        .demo-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .demo-btn.danger {
+            background-color: var(--highlight-color);
+        }
+        
+        .demo-btn.danger:hover {
+            background-color: #c0392b;
+        }
+        
+        .demo-info {
+            background-color: rgba(0,0,0,0.2);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .comparison-table th {
+            background-color: var(--secondary-color);
+            color: var(--accent-color);
+        }
+        
+        .comparison-table tr:hover {
+            background-color: rgba(255,255,255,0.05);
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes dataFlow {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .demo-controls {
+                flex-direction: column;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Bus Topology</h1>
+            <p class="tagline">All devices connected to a single backbone cable - Simple but outdated</p>
+        </div>
+    </header>
+
+    <section id="introduction">
+        <div class="container">
+            <h2>What is Bus Topology?</h2>
+            <p>A <strong>Bus Topology</strong> is a network configuration where all devices (computers) are connected to a single central cable called the backbone. Data travels in a straight line along this cable.</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3><i class="fas fa-road"></i> Simple Meaning</h3>
+                    <p>"Imagine a main road with houses connected on both sides. All houses share the same road for communication."</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-network-wired"></i> How It Works</h3>
+                    <p>When a device sends data, it travels along the backbone cable. Only the device with the matching address receives the data, others ignore it.</p>
+                </div>
+            </div>
+            
+            <div class="interactive-demo">
+                <h3><i class="fas fa-play-circle"></i> Interactive Bus Topology Demo</h3>
+                <p>Click the buttons below to see how Bus Topology works and its limitations:</p>
+                
+                <div class="demo-controls">
+                    <button class="demo-btn" onclick="showDataFlow()">Show Data Flow</button>
+                    <button class="demo-btn" onclick="showCableFailure()">Cable Failure</button>
+                    <button class="demo-btn" onclick="showTerminators()">Show Terminators</button>
+                    <button class="demo-btn" onclick="resetAnimation()">Reset Animation</button>
+                </div>
+                
+                <div class="demo-info" id="dataFlowInfo">
+                    <h4>Data Flow in Bus Topology</h4>
+                    <p>Data packets travel along the backbone cable. Each device checks if the data is addressed to it. If not, it ignores the data.</p>
+                </div>
+                
+                <div class="demo-info" id="cableFailureInfo">
+                    <h4>Cable Failure Impact</h4>
+                    <p>If the backbone cable fails at any point, the entire network goes down. This is the biggest weakness of bus topology.</p>
+                </div>
+                
+                <div class="demo-info" id="terminatorsInfo">
+                    <h4>Terminators</h4>
+                    <p>Terminators are placed at both ends of the backbone cable to prevent signal bounce, which would cause data collisions.</p>
+                </div>
+            </div>
+            
+            <div class="topology-animation" id="topologyAnimation">
+                <!-- Animation will be created with JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="examples">
+        <div class="container">
+            <h2>Real-World Examples</h2>
+            <p>Bus Topology was commonly used in older networks. Here are some real-world examples:</p>
+            
+            <div class="example-grid">
+                <div class="example-item">
+                    <div class="example-img">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <div class="example-content">
+                        <h3>Cable TV Connection</h3>
+                        <p>Cable TV operator → one main cable → all houses get connection. This works exactly like bus topology.</p>
+                    </div>
+                </div>
+                
+                <div class="example-item">
+                    <div class="example-img">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="example-content">
+                        <h3>Old Office Networks</h3>
+                        <p>In 1990s-2000s, small offices used a single coaxial cable to connect multiple PCs in daisy-chain style.</p>
+                    </div>
+                </div>
+                
+                <div class="example-item">
+                    <div class="example-img">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <div class="example-content">
+                        <h3>Shared Wi-Fi Repeaters</h3>
+                        <p>In old buildings, a main cable would run through multiple floors with connections - similar to bus topology.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="structure">
+        <div class="container">
+            <h2>Physical Structure</h2>
+            <p>Bus Topology has a simple physical layout with specific components:</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3><i class="fas fa-cable-car"></i> Backbone Cable</h3>
+                    <p>A single main cable (usually coaxial) that runs through the entire network. All devices connect to this cable.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-link"></i> T-Connectors</h3>
+                    <p>Devices connect to the backbone using T-connectors that tap into the main cable.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-stop-circle"></i> Terminators</h3>
+                    <p>Placed at both ends of the backbone cable to absorb signals and prevent bounce-back.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pros-cons">
+        <div class="container">
+            <h2>Advantages & Disadvantages</h2>
+            
+            <div class="advantages-disadvantages">
+                <div class="pros-cons">
+                    <h3><i class="fas fa-thumbs-up"></i> Advantages</h3>
+                    <ul class="advantages">
+                        <li><strong>Cost-effective:</strong> Requires less cable than other topologies</li>
+                        <li><strong>Easy installation:</strong> Simple to set up with just one main cable</li>
+                        <li><strong>Good for small networks:</strong> Works well with 5-10 devices</li>
+                        <li><strong>Easy to extend:</strong> New devices can be added easily</li>
+                    </ul>
+                </div>
+                
+                <div class="pros-cons">
+                    <h3><i class="fas fa-thumbs-down"></i> Disadvantages</h3>
+                    <ul class="disadvantages">
+                        <li><strong>Single point of failure:</strong> If backbone fails, entire network goes down</li>
+                        <li><strong>Performance issues:</strong> Network slows down as more devices are added</li>
+                        <li><strong>Difficult troubleshooting:</strong> Hard to identify where problems occur</li>
+                        <li><strong>Security concerns:</strong> Data is broadcast to all devices on the cable</li>
+                        <li><strong>Outdated:</strong> Not suitable for modern high-speed networks</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="usage">
+        <div class="container">
+            <h2>Where is Bus Topology Used Today?</h2>
+            <p>Bus Topology is rare in modern computer networks but still used in some specific applications:</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Application</th>
+                        <th>How It's Used</th>
+                        <th>Why Bus Topology</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cable TV Distribution</td>
+                        <td>Main cable → split → houses</td>
+                        <td>Cost-effective for one-way broadcast</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor Networks</td>
+                        <td>Simple circuits / IoT devices</td>
+                        <td>Low cost for small range communications</td>
+                    </tr>
+                    <tr>
+                        <td>Industrial Control Systems</td>
+                        <td>Old factory automation devices</td>
+                        <td>Legacy systems that haven't been upgraded</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="summary">
+        <div class="container">
+            <h2>Quick Summary</h2>
+            <div class="card">
+                <h3><i class="fas fa-lightbulb"></i> Bus Topology in a Nutshell</h3>
+                <p><strong>Bus Topology = One straight cable with all devices connected to it.</strong></p>
+                <p>It's like an old-fashioned party line telephone system - everyone shares the same line.</p>
+                <p><strong>Main weakness:</strong> One cable failure stops the entire network.</p>
+                <p><strong>Status:</strong> Mostly outdated for computer networks but the concept is still used in some applications like cable TV.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Bus Topology - Simple but Outdated Network Design</p>
+            <p>© 2023 Network Topology Guide</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create topology animation
+        document.addEventListener('DOMContentLoaded', function() {
+            createTopologyAnimation();
+        });
+        
+        function createTopologyAnimation() {
+            const animationContainer = document.getElementById('topologyAnimation');
+            animationContainer.innerHTML = '';
+            
+            // Create bus cable
+            const busCable = document.createElement('div');
+            busCable.className = 'bus-cable';
+            busCable.id = 'busCable';
+            animationContainer.appendChild(busCable);
+            
+            // Create devices
+            const deviceCount = 6;
+            const deviceLabels = ['PC 1', 'PC 2', 'PC 3', 'PC 4', 'PC 5', 'Server'];
+            const deviceIcons = ['fa-desktop', 'fa-desktop', 'fa-desktop', 'fa-desktop', 'fa-desktop', 'fa-server'];
+            
+            for (let i = 0; i < deviceCount; i++) {
+                const device = document.createElement('div');
+                device.className = 'device';
+                device.id = 'device' + i;
+                device.style.left = `${15 + i * 15}%`;
+                device.style.top = `${30 + (i % 2) * 40}%`;
+                
+                const icon = document.createElement('i');
+                icon.className = 'fas ' + deviceIcons[i];
+                device.appendChild(icon);
+                
+                const label = document.createElement('div');
+                label.className = 'device-label';
+                label.textContent = deviceLabels[i];
+                device.appendChild(label);
+                
+                animationContainer.appendChild(device);
+                
+                // Create connection to bus cable
+                const connection = document.createElement('div');
+                connection.className = 'connection';
+                connection.style.left = `calc(${15 + i * 15}% + 28px)`;
+                
+                if (i % 2 === 0) {
+                    connection.style.top = '50%';
+                    connection.style.height = 'calc(30% - 25px)';
+                } else {
+                    connection.style.top = 'calc(50% + 8px)';
+                    connection.style.height = 'calc(40% - 25px)';
+                }
+                
+                animationContainer.appendChild(connection);
+            }
+            
+            // Create terminators
+            const leftTerminator = document.createElement('div');
+            leftTerminator.className = 'terminator';
+            leftTerminator.id = 'leftTerminator';
+            leftTerminator.style.left = '2%';
+            leftTerminator.style.top = '48%';
+            leftTerminator.textContent = 'T';
+            leftTerminator.style.display = 'none';
+            animationContainer.appendChild(leftTerminator);
+            
+            const rightTerminator = document.createElement('div');
+            rightTerminator.className = 'terminator';
+            rightTerminator.id = 'rightTerminator';
+            rightTerminator.style.left = '98%';
+            rightTerminator.style.top = '48%';
+            rightTerminator.textContent = 'T';
+            rightTerminator.style.display = 'none';
+            animationContainer.appendChild(rightTerminator);
+            
+            // Create initial data packets
+            createDataPackets();
+        }
+        
+        function createDataPackets() {
+            const animationContainer = document.getElementById('topologyAnimation');
+            const busCable = document.getElementById('busCable');
+            
+            // Create data packet
+            const packet = document.createElement('div');
+            packet.className = 'data-packet';
+            packet.style.left = '5%';
+            packet.style.top = '48%';
+            
+            animationContainer.appendChild(packet);
+            
+            // Animate packet
+            let pos = 5;
+            const interval = setInterval(() => {
+                pos += 0.5;
+                packet.style.left = `${pos}%`;
+                
+                if (pos >= 95) {
+                    clearInterval(interval);
+                    packet.remove();
+                    // Create new packet after a delay
+                    setTimeout(createDataPackets, 1000);
+                }
+            }, 20);
+        }
+        
+        function showDataFlow() {
+            resetInfo();
+            document.getElementById('dataFlowInfo').style.display = 'block';
+            
+            // Highlight the data flow
+            const busCable = document.getElementById('busCable');
+            busCable.style.boxShadow = '0 0 15px rgba(231, 76, 60, 0.7)';
+            
+            // Reset after some time
+            setTimeout(() => {
+                busCable.style.boxShadow = 'none';
+            }, 3000);
+        }
+        
+        function showCableFailure() {
+            resetInfo();
+            document.getElementById('cableFailureInfo').style.display = 'block';
+            
+            // Show cable break
+            const busCable = document.getElementById('busCable');
+            busCable.style.backgroundImage = 'linear-gradient(to right, #3498db 45%, transparent 45%, transparent 55%, #3498db 55%)';
+            busCable.style.backgroundRepeat = 'no-repeat';
+            
+            // Dim all devices
+            const devices = document.querySelectorAll('.device');
+            devices.forEach(device => {
+                device.style.opacity = '0.5';
+            });
+            
+            // Stop data packets
+            const packets = document.querySelectorAll('.data-packet');
+            packets.forEach(packet => packet.remove());
+        }
+        
+        function showTerminators() {
+            resetInfo();
+            document.getElementById('terminatorsInfo').style.display = 'block';
+            
+            // Show terminators
+            document.getElementById('leftTerminator').style.display = 'flex';
+            document.getElementById('rightTerminator').style.display = 'flex';
+            
+            // Pulse animation for terminators
+            const terminators = document.querySelectorAll('.terminator');
+            terminators.forEach(term => {
+                term.style.animation = 'pulse 1s infinite';
+            });
+        }
+        
+        function resetAnimation() {
+            resetInfo();
+            createTopologyAnimation();
+        }
+        
+        function resetInfo() {
+            const infoSections = document.querySelectorAll('.demo-info');
+            infoSections.forEach(section => {
+                section.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html>
