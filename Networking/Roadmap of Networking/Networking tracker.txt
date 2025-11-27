@@ -7,7 +7,7 @@ LEVEL 1: BASICS & FUNDAMENTALS
 	Network enna, yen use panrom
 	Types of Networks: PAN, LAN, MAN, WAN, CAN	
 	Network Topologies: Bus, Star, Ring, Mesh, Tree, Hybrid
-	Client-Server vs Peer-to-Peer
+	Client-Server vs Peer-to-Peer 
 	Network Architecture: Centralized, Decentralized, Distributed
 
 2. OSI Model (7 Layers)

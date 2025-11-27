@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Topology - Complete Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --highlight-color: #e74c3c;
+            --success-color: #2ecc71;
+            --text-color: #ecf0f1;
+            --card-bg: #3a516e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(52, 152, 219, 0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--accent-color);
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .example-item {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .example-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .example-img {
+            height: 200px;
+            background-color: #1a2530;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .example-img i {
+            font-size: 4rem;
+            color: var(--accent-color);
+            z-index: 2;
+        }
+        
+        .example-img::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(52, 152, 219, 0.3), rgba(231, 76, 60, 0.3));
+            opacity: 0.7;
+        }
+        
+        .example-content {
+            padding: 1.5rem;
+        }
+        
+        .example-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .advantages-disadvantages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .pros-cons {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .pros-cons h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+        
+        .pros-cons ul {
+            list-style-type: none;
+        }
+        
+        .pros-cons li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        
+        .pros-cons li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .advantages li::before {
+            background-color: var(--success-color);
+        }
+        
+        .disadvantages li::before {
+            background-color: var(--highlight-color);
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        /* Tree Topology Animation Styles */
+        .topology-animation {
+            width: 100%;
+            height: 700px;
+            background: linear-gradient(135deg, #1a2530, #2c3e50);
+            border-radius: 15px;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .backbone {
+            position: absolute;
+            left: 50%;
+            top: 100px;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 8px;
+            background: linear-gradient(90deg, var(--accent-color), #2980b9);
+            z-index: 2;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+        }
+        
+        .branch {
+            position: absolute;
+            height: 8px;
+            background: linear-gradient(90deg, #2ecc71, #27ae60);
+            z-index: 2;
+            transform-origin: 0 0;
+            box-shadow: 0 0 8px rgba(46, 204, 113, 0.5);
+        }
+        
+        .switch {
+            position: absolute;
+            width: 80px;
+            height: 60px;
+            background: linear-gradient(145deg, var(--card-bg), #34495e);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 2px solid var(--accent-color);
+        }
+        
+        .switch-icon {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+        
+        .switch-label {
+            font-size: 0.7rem;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .device {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(145deg, var(--card-bg), #34495e);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .device-icon {
+            font-size: 1.2rem;
+            margin-bottom: 3px;
+            color: var(--accent-color);
+        }
+        
+        .device-label {
+            font-size: 0.6rem;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .connection {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color), #2980b9);
+            z-index: 2;
+            transform-origin: 0 0;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+        
+        .data-packet {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--highlight-color);
+            border-radius: 50%;
+            z-index: 8;
+            box-shadow: 0 0 6px var(--highlight-color);
+        }
+        
+        .packet-label {
+            position: absolute;
+            font-size: 0.5rem;
+            color: white;
+            background: rgba(0,0,0,0.7);
+            padding: 1px 3px;
+            border-radius: 2px;
+            white-space: nowrap;
+            z-index: 9;
+        }
+        
+        .interactive-demo {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .demo-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .demo-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .demo-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .demo-btn i {
+            font-size: 1rem;
+        }
+        
+        .demo-btn.danger {
+            background-color: var(--highlight-color);
+        }
+        
+        .demo-btn.danger:hover {
+            background-color: #c0392b;
+        }
+        
+        .demo-info {
+            background-color: rgba(0,0,0,0.2);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        .status-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--accent-color);
+            z-index: 20;
+            max-width: 250px;
+        }
+        
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .status-value {
+            color: var(--success-color);
+            font-weight: bold;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .comparison-table th {
+            background-color: var(--secondary-color);
+            color: var(--accent-color);
+        }
+        
+        .comparison-table tr:hover {
+            background-color: rgba(255,255,255,0.05);
+        }
+        
+        .feature-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin: 0.2rem;
+        }
+        
+        .badge-success {
+            background-color: var(--success-color);
+        }
+        
+        .badge-warning {
+            background-color: #f39c12;
+        }
+        
+        .badge-danger {
+            background-color: var(--highlight-color);
+        }
+        
+        .tree-structure {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 10px;
+        }
+        
+        .tree-level {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+            width: 100%;
+        }
+        
+        .tree-node {
+            padding: 1rem;
+            background: var(--secondary-color);
+            border-radius: 5px;
+            margin: 0 1rem;
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        .tree-connector {
+            width: 2px;
+            background: var(--accent-color);
+            margin: 0 auto;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(52, 152, 219, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+            }
+        }
+        
+        @keyframes deviceGlow {
+            0%, 100% { box-shadow: 0 3px 10px rgba(0,0,0,0.3); }
+            50% { box-shadow: 0 3px 15px rgba(52, 152, 219, 0.5); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .glow {
+            animation: glow 2s infinite;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .demo-controls {
+                flex-direction: column;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+            
+            .topology-animation {
+                height: 600px;
+            }
+            
+            .device {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .device-icon {
+                font-size: 1rem;
+            }
+            
+            .backbone {
+                width: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Tree Topology</h1>
+            <p class="tagline">Star + Bus combination - The perfect organized network for large buildings</p>
+        </div>
+    </header>
+
+    <section id="introduction">
+        <div class="container">
+            <h2>What is Tree Topology?</h2>
+            <p>A <strong>Tree Topology</strong> is a network configuration that combines Star and Bus topologies. It has one main backbone cable (like a tree trunk) with multiple branches (switches) that connect to many devices (leaves).</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3><i class="fas fa-tree"></i> Simple Meaning</h3>
+                    <p>"Imagine a big tree with one main trunk, multiple branches, and many leaves. Tree topology works exactly like this - organized, scalable, and perfect for large networks."</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-sitemap"></i> Star + Bus Mix</h3>
+                    <p>Tree topology = Bus backbone + Star branches. Main cable acts as trunk, switches act as branches, and devices act as leaves on the tree.</p>
+                </div>
+            </div>
+            
+            <div class="interactive-demo">
+                <h3><i class="fas fa-play-circle"></i> Interactive Tree Topology Demo</h3>
+                <p>Click the buttons below to see how Tree Topology works in real scenarios:</p>
+                
+                <div class="demo-controls">
+                    <button class="demo-btn" onclick="showSchoolExample()">
+                        <i class="fas fa-school"></i> School Network
+                    </button>
+                    <button class="demo-btn" onclick="showOfficeExample()">
+                        <i class="fas fa-building"></i> Office Building
+                    </button>
+                    <button class="demo-btn" onclick="sendDataPacket()">
+                        <i class="fas fa-paper-plane"></i> Send Data
+                    </button>
+                    <button class="demo-btn" onclick="simulateBackboneFailure()">
+                        <i class="fas fa-exclamation-triangle"></i> Backbone Failure
+                    </button>
+                    <button class="demo-btn" onclick="addNewBranch()">
+                        <i class="fas fa-plus"></i> Add Branch
+                    </button>
+                    <button class="demo-btn" onclick="resetAnimation()">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                </div>
+                
+                <div class="demo-info" id="schoolInfo">
+                    <h4>School Network Example</h4>
+                    <p>Main server room connects to different areas: Computer Lab 1, Computer Lab 2, Staff Room, and Office - each with their own switch and devices.</p>
+                </div>
+                
+                <div class="demo-info" id="officeInfo">
+                    <h4>Office Building Example</h4>
+                    <p>Each floor has its own switch connected to the main backbone, with multiple computers on each floor in a star arrangement.</p>
+                </div>
+                
+                <div class="demo-info" id="dataInfo">
+                    <h4>Data Flow in Tree</h4>
+                    <p>Data travels through backbone to the correct branch switch, then to the destination device - very organized flow.</p>
+                </div>
+                
+                <div class="demo-info" id="failureInfo">
+                    <h4>Backbone Failure Impact</h4>
+                    <p>If the main backbone fails, the entire network goes down. This is the main weakness of tree topology.</p>
+                </div>
+                
+                <div class="demo-info" id="branchInfo">
+                    <h4>Adding New Branches</h4>
+                    <p>New branches can be easily added to the backbone, making tree topology highly scalable for growing organizations.</p>
+                </div>
+            </div>
+            
+            <div class="topology-animation" id="topologyAnimation">
+                <!-- Status Panel -->
+                <div class="status-panel">
+                    <h3 style="margin-bottom: 1rem; color: var(--accent-color);">Network Status</h3>
+                    <div class="status-item">
+                        <span>Branches:</span>
+                        <span class="status-value" id="branchCount">4</span>
+                    </div>
+                    <div class="status-item">
+                        <span>Total Devices:</span>
+                        <span class="status-value" id="deviceCount">16</span>
+                    </div>
+                    <div class="status-item">
+                        <span>Network Health:</span>
+                        <span class="status-value" id="networkHealth">100%</span>
+                    </div>
+                    <div class="status-item">
+                        <span>Active Packets:</span>
+                        <span class="status-value" id="activePackets">0</span>
+                    </div>
+                </div>
+                
+                <!-- Tree elements will be added by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="structure">
+        <div class="container">
+            <h2>Tree Structure Visualization</h2>
+            
+            <div class="tree-structure">
+                <div class="tree-level">
+                    <div class="tree-node">
+                        <i class="fas fa-server"></i>
+                        <div>Main Server</div>
+                        <small>Root/Trunk</small>
+                    </div>
+                </div>
+                
+                <div class="tree-connector" style="height: 40px;"></div>
+                
+                <div class="tree-level">
+                    <div class="tree-node">
+                        <i class="fas fa-network-wired"></i>
+                        <div>Backbone Cable</div>
+                        <small>Main Trunk</small>
+                    </div>
+                </div>
+                
+                <div class="tree-connector" style="height: 40px;"></div>
+                
+                <div class="tree-level">
+                    <div class="tree-node">
+                        <i class="fas fa-sitemap"></i>
+                        <div>Switch 1</div>
+                        <small>Branch</small>
+                    </div>
+                    <div class="tree-node">
+                        <i class="fas fa-sitemap"></i>
+                        <div>Switch 2</div>
+                        <small>Branch</small>
+                    </div>
+                    <div class="tree-node">
+                        <i class="fas fa-sitemap"></i>
+                        <div>Switch 3</div>
+                        <small>Branch</small>
+                    </div>
+                </div>
+                
+                <div class="tree-connector" style="height: 40px;"></div>
+                
+                <div class="tree-level">
+                    <div class="tree-node">
+                        <i class="fas fa-desktop"></i>
+                        <div>PC 1-4</div>
+                        <small>Leaves</small>
+                    </div>
+                    <div class="tree-node">
+                        <i class="fas fa-desktop"></i>
+                        <div>PC 5-8</div>
+                        <small>Leaves</small>
+                    </div>
+                    <div class="tree-node">
+                        <i class="fas fa-desktop"></i>
+                        <div>PC 9-12</div>
+                        <small>Leaves</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="examples">
+        <div class="container">
+            <h2>Real-World Examples</h2>
+            <p>Tree Topology is perfect for large, organized networks. Here are common real-world applications:</p>
+            
+            <div class="example-grid">
+                <div class="example-item">
+                    <div class="example-img">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <div class="example-content">
+                        <h3>School/College Network</h3>
+                        <p>Main server room connects to computer labs, staff rooms, and offices. Each area has its own switch with multiple computers - perfectly organized like a tree.</p>
+                    </div>
+                </div>
+                
+                <div class="example-item">
+                    <div class="example-img">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="example-content">
+                        <h3>Office Building Network</h3>
+                        <p>Each floor has one switch connected to the main backbone. Each switch connects to 10-20 computers on that floor. Very organized and easy to manage.</p>
+                    </div>
+                </div>
+                
+                <div class="example-item">
+                    <div class="example-img">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="example-content">
+                        <h3>Mall CCTV Network</h3>
+                        <p>Main DVR connects to switches on each floor. Each switch connects to multiple security cameras. Organized monitoring system.</p>
+                    </div>
+                </div>
+                
+                <div class="example-item">
+                    <div class="example-img">
+                        <i class="fas fa-tower-cell"></i>
+                    </div>
+                    <div class="example-content">
+                        <h3>Telecom Network</h3>
+                        <p>Central tower connects to multiple area towers. Each area tower serves hundreds of users. Hierarchical structure perfect for tree topology.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works">
+        <div class="container">
+            <h2>How Tree Topology Works</h2>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3><i class="fas fa-road"></i> Bus Backbone</h3>
+                    <p>Main cable acts as the trunk. All data travels through this backbone to reach different branches.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-code-branch"></i> Star Branches</h3>
+                    <p>Each branch (switch) connects multiple devices in star formation. Easy to manage and troubleshoot.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-leaf"></i> Device Leaves</h3>
+                    <p>End devices (computers, printers) connect to branch switches. Organized and scalable.</p>
+                </div>
+            </div>
+            
+            <div class="card" style="margin-top: 2rem;">
+                <h3><i class="fas fa-map-signs"></i> Real Example: School Data Flow</h3>
+                <p>When a computer in Lab 1 needs to access the main server:</p>
+                <ul>
+                    <li><strong>Step 1:</strong> Data travels from PC to Lab 1 Switch</li>
+                    <li><strong>Step 2:</strong> Travels through backbone cable</li>
+                    <li><strong>Step 3:</strong> Reaches main server</li>
+                </ul>
+                <p>Very organized flow - just like bus routes: Main road → Branch road → Your street → Your house.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pros-cons">
+        <div class="container">
+            <h2>Advantages & Disadvantages</h2>
+            
+            <div class="advantages-disadvantages">
+                <div class="pros-cons">
+                    <h3><i class="fas fa-thumbs-up"></i> Advantages</h3>
+                    <ul class="advantages">
+                        <li><strong>Very Organized:</strong> Everything in tree structure - easy to understand</li>
+                        <li><strong>Easy to Scale:</strong> Add new branches easily for growth</li>
+                        <li><strong>Troubleshooting Simple:</strong> Branch problems isolated to that area</li>
+                        <li><strong>Perfect for Large Networks:</strong> Schools, offices, malls</li>
+                        <li><strong>Supports Many Devices:</strong> Thousands of devices possible</li>
+                    </ul>
+                </div>
+                
+                <div class="pros-cons">
+                    <h3><i class="fas fa-thumbs-down"></i> Disadvantages</h3>
+                    <ul class="disadvantages">
+                        <li><strong>Backbone Failure:</strong> Main cable failure stops entire network</li>
+                        <li><strong>High Cost:</strong> Multiple switches and cables required</li>
+                        <li><strong>Cabling Heavy:</strong> Lots of wiring in large buildings</li>
+                        <li><strong>Complex Setup:</strong> Requires careful planning</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="usage">
+        <div class="container">
+            <h2>Where Tree Topology Is Used</h2>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Organization</th>
+                        <th>Tree Structure</th>
+                        <th>Why Tree Works</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Schools & Colleges</td>
+                        <td>Server → Labs/Classrooms</td>
+                        <td>Organized by departments and rooms</td>
+                    </tr>
+                    <tr>
+                        <td>Office Buildings</td>
+                        <td>Server → Floors → Departments</td>
+                        <td>Natural floor-based hierarchy</td>
+                    </tr>
+                    <tr>
+                        <td>Shopping Malls</td>
+                        <td>Main DVR → Floors → Cameras</td>
+                        <td>Organized surveillance by areas</td>
+                    </tr>
+                    <tr>
+                        <td>Hospital Networks</td>
+                        <td>Server → Wings → Departments</td>
+                        <td>Medical departments hierarchy</td>
+                    </tr>
+                    <tr>
+                        <td>University Campuses</td>
+                        <td>Main → Buildings → Rooms</td>
+                        <td>Natural campus structure</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="summary">
+        <div class="container">
+            <h2>Quick Summary</h2>
+            
+            <div class="card">
+                <h3><i class="fas fa-lightbulb"></i> Tree Topology in One Line</h3>
+                <p><strong>Tree = One main backbone + multiple branch switches + many devices. Organized like a tree for large networks.</strong></p>
+                <p>It's like a well-organized tree with a strong trunk, multiple branches, and many leaves - perfect for schools, offices, and large buildings where organization and scalability matter.</p>
+                <p><strong>Best for:</strong> Schools, colleges, office buildings, malls, hospitals - any large organized space.</p>
+                <p><strong>Remember:</strong> Backbone is critical - if it fails, the whole network fails!</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Tree Topology - The Organized Network Solution</p>
+            <p>© 2023 Network Topology Guide</p>
+        </div>
+    </footer>
+
+    <script>
+        // Configuration
+        const config = {
+            activePackets: 0,
+            currentExample: 'school',
+            branches: [],
+            backboneActive: true
+        };
+
+        // School example configuration - Improved alignment
+        const schoolBranches = [
+            {
+                id: 'lab1',
+                name: 'Computer Lab 1',
+                switchX: 150,
+                devices: [
+                    { id: 'lab1-pc1', type: 'desktop', x: 80, y: 350, label: 'PC 1' },
+                    { id: 'lab1-pc2', type: 'desktop', x: 80, y: 400, label: 'PC 2' },
+                    { id: 'lab1-pc3', type: 'desktop', x: 80, y: 450, label: 'PC 3' },
+                    { id: 'lab1-pc4', type: 'desktop', x: 80, y: 500, label: 'PC 4' }
+                ]
+            },
+            {
+                id: 'lab2',
+                name: 'Computer Lab 2',
+                switchX: 250,
+                devices: [
+                    { id: 'lab2-pc1', type: 'desktop', x: 220, y: 350, label: 'PC 5' },
+                    { id: 'lab2-pc2', type: 'desktop', x: 220, y: 400, label: 'PC 6' },
+                    { id: 'lab2-pc3', type: 'desktop', x: 220, y: 450, label: 'PC 7' },
+                    { id: 'lab2-pc4', type: 'desktop', x: 220, y: 500, label: 'PC 8' }
+                ]
+            },
+            {
+                id: 'staff',
+                name: 'Staff Room',
+                switchX: 350,
+                devices: [
+                    { id: 'staff-pc1', type: 'laptop', x: 320, y: 350, label: 'Laptop 1' },
+                    { id: 'staff-pc2', type: 'laptop', x: 320, y: 400, label: 'Laptop 2' },
+                    { id: 'staff-printer', type: 'print', x: 320, y: 450, label: 'Printer' }
+                ]
+            },
+            {
+                id: 'office',
+                name: 'Office',
+                switchX: 450,
+                devices: [
+                    { id: 'office-pc1', type: 'desktop', x: 420, y: 350, label: 'Office PC1' },
+                    { id: 'office-pc2', type: 'desktop', x: 420, y: 400, label: 'Office PC2' },
+                    { id: 'office-server', type: 'server', x: 420, y: 450, label: 'File Server' }
+                ]
+            }
+        ];
+
+        // Office example configuration - Improved alignment
+        const officeBranches = [
+            {
+                id: 'floor1',
+                name: '1st Floor',
+                switchX: 150,
+                devices: [
+                    { id: 'f1-pc1', type: 'desktop', x: 80, y: 350, label: 'Sales 1' },
+                    { id: 'f1-pc2', type: 'desktop', x: 80, y: 400, label: 'Sales 2' },
+                    { id: 'f1-pc3', type: 'desktop', x: 80, y: 450, label: 'Sales 3' },
+                    { id: 'f1-pc4', type: 'desktop', x: 80, y: 500, label: 'Sales 4' }
+                ]
+            },
+            {
+                id: 'floor2',
+                name: '2nd Floor',
+                switchX: 250,
+                devices: [
+                    { id: 'f2-pc1', type: 'desktop', x: 220, y: 350, label: 'HR 1' },
+                    { id: 'f2-pc2', type: 'desktop', x: 220, y: 400, label: 'HR 2' },
+                    { id: 'f2-pc3', type: 'desktop', x: 220, y: 450, label: 'HR 3' },
+                    { id: 'f2-printer', type: 'print', x: 220, y: 500, label: 'HR Printer' }
+                ]
+            },
+            {
+                id: 'floor3',
+                name: '3rd Floor',
+                switchX: 350,
+                devices: [
+                    { id: 'f3-pc1', type: 'laptop', x: 320, y: 350, label: 'Dev 1' },
+                    { id: 'f3-pc2', type: 'laptop', x: 320, y: 400, label: 'Dev 2' },
+                    { id: 'f3-pc3', type: 'laptop', x: 320, y: 450, label: 'Dev 3' },
+                    { id: 'f3-server', type: 'server', x: 320, y: 500, label: 'Dev Server' }
+                ]
+            },
+            {
+                id: 'floor4',
+                name: '4th Floor',
+                switchX: 450,
+                devices: [
+                    { id: 'f4-pc1', type: 'desktop', x: 420, y: 350, label: 'Admin 1' },
+                    { id: 'f4-pc2', type: 'desktop', x: 420, y: 400, label: 'Admin 2' },
+                    { id: 'f4-db', type: 'database', x: 420, y: 450, label: 'Main DB' }
+                ]
+            }
+        ];
+
+        // Initialize the topology
+        function initTopology() {
+            const container = document.getElementById('topologyAnimation');
+            
+            // Clear existing elements
+            document.querySelectorAll('.backbone, .branch, .switch, .device, .connection, .data-packet, .packet-label').forEach(el => el.remove());
+            
+            config.backboneActive = true;
+            config.branches = config.currentExample === 'school' ? [...schoolBranches] : [...officeBranches];
+            
+            // Create backbone
+            createBackbone(container);
+            
+            // Create branches
+            config.branches.forEach(branch => {
+                createBranch(branch, container);
+            });
+            
+            updateStatus();
+        }
+
+        // Create backbone
+        function createBackbone(container) {
+            const backbone = document.createElement('div');
+            backbone.className = 'backbone';
+            backbone.id = 'backbone';
+            container.appendChild(backbone);
+            
+            // Create main server
+            const mainServer = document.createElement('div');
+            mainServer.className = 'switch';
+            mainServer.id = 'mainServer';
+            mainServer.style.left = '300px';
+            mainServer.style.top = '50px';
+            
+            const serverIcon = document.createElement('i');
+            serverIcon.className = 'fas fa-server switch-icon';
+            mainServer.appendChild(serverIcon);
+            
+            const serverLabel = document.createElement('div');
+            serverLabel.className = 'switch-label';
+            serverLabel.textContent = 'Main Server';
+            mainServer.appendChild(serverLabel);
+            
+            container.appendChild(mainServer);
+        }
+
+        // Create a branch
+        function createBranch(branch, container) {
+            // Create branch line
+            const branchLine = document.createElement('div');
+            branchLine.className = 'branch';
+            branchLine.id = `branch-${branch.id}`;
+            branchLine.style.left = `${branch.switchX}px`;
+            branchLine.style.top = '150px';
+            branchLine.style.width = '2px';
+            branchLine.style.height = '100px';
+            container.appendChild(branchLine);
+            
+            // Create switch
+            const switchEl = document.createElement('div');
+            switchEl.className = 'switch';
+            switchEl.id = `switch-${branch.id}`;
+            switchEl.style.left = `${branch.switchX - 40}px`;
+            switchEl.style.top = '250px';
+            
+            const switchIcon = document.createElement('i');
+            switchIcon.className = 'fas fa-network-wired switch-icon';
+            switchEl.appendChild(switchIcon);
+            
+            const switchLabel = document.createElement('div');
+            switchLabel.className = 'switch-label';
+            switchLabel.textContent = branch.name;
+            switchEl.appendChild(switchLabel);
+            
+            container.appendChild(switchEl);
+            
+            // Create devices
+            branch.devices.forEach(deviceConfig => {
+                createDevice(deviceConfig, branch, container);
+            });
+            
+            // Create connections
+            createBranchConnections(branch, container);
+        }
+
+        // Create a device
+        function createDevice(deviceConfig, branch, container) {
+            const device = document.createElement('div');
+            device.className = 'device';
+            device.id = deviceConfig.id;
+            device.style.left = `${deviceConfig.x}px`;
+            device.style.top = `${deviceConfig.y}px`;
+            device.style.animation = `deviceGlow ${Math.random() * 3 + 2}s infinite`;
+            
+            const icon = document.createElement('i');
+            icon.className = getDeviceIcon(deviceConfig.type);
+            device.appendChild(icon);
+            
+            const label = document.createElement('div');
+            label.className = 'device-label';
+            label.textContent = deviceConfig.label;
+            device.appendChild(label);
+            
+            container.appendChild(device);
+        }
+
+        // Get device icon based on type
+        function getDeviceIcon(type) {
+            const icons = {
+                'desktop': 'fas fa-desktop device-icon',
+                'laptop': 'fas fa-laptop device-icon',
+                'server': 'fas fa-server device-icon',
+                'database': 'fas fa-database device-icon',
+                'print': 'fas fa-print device-icon'
+            };
+            return icons[type] || 'fas fa-desktop device-icon';
+        }
+
+        // Create connections for a branch
+        function createBranchConnections(branch, container) {
+            const switchEl = document.getElementById(`switch-${branch.id}`);
+            
+            // Connect switch to backbone
+            createConnection(switchEl, document.getElementById('mainServer'), container);
+            
+            // Connect devices to switch
+            branch.devices.forEach(deviceConfig => {
+                const deviceEl = document.getElementById(deviceConfig.id);
+                createConnection(deviceEl, switchEl, container);
+            });
+        }
+
+        // Create connection between two elements
+        function createConnection(el1, el2, container) {
+            if (!el1 || !el2) return;
+            
+            const rect1 = el1.getBoundingClientRect();
+            const rect2 = el2.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+            
+            const x1 = rect1.left - containerRect.left + rect1.width / 2;
+            const y1 = rect1.top - containerRect.top + rect1.height / 2;
+            const x2 = rect2.left - containerRect.left + rect2.width / 2;
+            const y2 = rect2.top - containerRect.top + rect2.height / 2;
+            
+            const connection = document.createElement('div');
+            connection.className = 'connection';
+            connection.id = `connection-${el1.id}-${el2.id}`;
+            
+            const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            const angleDeg = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+            
+            connection.style.width = `${length}px`;
+            connection.style.left = `${x1}px`;
+            connection.style.top = `${y1}px`;
+            connection.style.transform = `rotate(${angleDeg}deg)`;
+            
+            container.appendChild(connection);
+        }
+
+        // Show school example
+        function showSchoolExample() {
+            resetInfo();
+            document.getElementById('schoolInfo').style.display = 'block';
+            config.currentExample = 'school';
+            initTopology();
+        }
+
+        // Show office example
+        function showOfficeExample() {
+            resetInfo();
+            document.getElementById('officeInfo').style.display = 'block';
+            config.currentExample = 'office';
+            initTopology();
+        }
+
+        // Send data packet
+        function sendDataPacket() {
+            if (!config.backboneActive) return;
+            
+            resetInfo();
+            document.getElementById('dataInfo').style.display = 'block';
+            
+            const container = document.getElementById('topologyAnimation');
+            const branches = config.currentExample === 'school' ? schoolBranches : officeBranches;
+            
+            // Randomly select source and destination from different branches
+            let sourceBranch, destBranch;
+            do {
+                sourceBranch = branches[Math.floor(Math.random() * branches.length)];
+                destBranch = branches[Math.floor(Math.random() * branches.length)];
+            } while (sourceBranch.id === destBranch.id);
+            
+            const sourceDevice = sourceBranch.devices[Math.floor(Math.random() * sourceBranch.devices.length)];
+            const destDevice = destBranch.devices[Math.floor(Math.random() * destBranch.devices.length)];
+            
+            // Create packet at source device
+            const sourceDeviceEl = document.getElementById(sourceDevice.id);
+            const sourceRect = sourceDeviceEl.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+            
+            const sourceX = sourceRect.left - containerRect.left + sourceRect.width / 2;
+            const sourceY = sourceRect.top - containerRect.top + sourceRect.height / 2;
+            
+            const packet = document.createElement('div');
+            packet.className = 'data-packet';
+            packet.id = 'dataPacket';
+            packet.style.left = `${sourceX}px`;
+            packet.style.top = `${sourceY}px`;
+            
+            // Add packet label
+            const packetLabel = document.createElement('div');
+            packetLabel.className = 'packet-label';
+            packetLabel.textContent = `To: ${destDevice.label}`;
+            packetLabel.style.left = `${sourceX + 10}px`;
+            packetLabel.style.top = `${sourceY - 8}px`;
+            
+            container.appendChild(packet);
+            container.appendChild(packetLabel);
+            config.activePackets++;
+            updateStatus();
+            
+            // Animate packet to destination through backbone
+            animatePacketToDestination(sourceDevice, destDevice, packet, packetLabel);
+        }
+
+        // Animate packet to destination
+        function animatePacketToDestination(sourceDevice, destDevice, packet, label) {
+            // Get intermediate points (source → switch → backbone → dest switch → dest)
+            const sourceSwitch = document.querySelector(`#topologyAnimation .switch:not(#mainServer)`);
+            const destSwitch = document.querySelector(`#topologyAnimation .switch:not(#mainServer):last-child`);
+            const mainServer = document.getElementById('mainServer');
+            
+            const points = [
+                { element: document.getElementById(sourceDevice.id), duration: 800 },
+                { element: sourceSwitch, duration: 800 },
+                { element: mainServer, duration: 800 },
+                { element: destSwitch, duration: 800 },
+                { element: document.getElementById(destDevice.id), duration: 800 }
+            ];
+            
+            let currentPoint = 0;
+            
+            function animateToNextPoint() {
+                if (currentPoint >= points.length) {
+                    // Packet reached destination
+                    packet.remove();
+                    label.remove();
+                    config.activePackets--;
+                    updateStatus();
+                    return;
+                }
+                
+                const point = points[currentPoint];
+                const pointRect = point.element.getBoundingClientRect();
+                const containerRect = document.getElementById('topologyAnimation').getBoundingClientRect();
+                
+                const pointX = pointRect.left - containerRect.left + pointRect.width / 2;
+                const pointY = pointRect.top - containerRect.top + pointRect.height / 2;
+                
+                // Animate packet movement
+                packet.style.transition = `all ${point.duration}ms ease`;
+                packet.style.left = `${pointX}px`;
+                packet.style.top = `${pointY}px`;
+                
+                label.style.transition = `all ${point.duration}ms ease`;
+                label.style.left = `${pointX + 10}px`;
+                label.style.top = `${pointY - 8}px`;
+                
+                // Move to next point after animation completes
+                setTimeout(() => {
+                    currentPoint++;
+                    animateToNextPoint();
+                }, point.duration);
+            }
+            
+            // Start animation
+            animateToNextPoint();
+        }
+
+        // Simulate backbone failure
+        function simulateBackboneFailure() {
+            resetInfo();
+            document.getElementById('failureInfo').style.display = 'block';
+            
+            config.backboneActive = false;
+            
+            // Visual indication of failure
+            const backbone = document.getElementById('backbone');
+            backbone.style.background = '#7f8c8d';
+            backbone.style.boxShadow = 'none';
+            
+            const mainServer = document.getElementById('mainServer');
+            mainServer.style.opacity = '0.5';
+            
+            // Update status
+            document.getElementById('networkHealth').textContent = '0%';
+            document.getElementById('networkHealth').style.color = '#e74c3c';
+            
+            // Auto-recover after 5 seconds
+            setTimeout(() => {
+                config.backboneActive = true;
+                backbone.style.background = 'linear-gradient(90deg, var(--accent-color), #2980b9)';
+                backbone.style.boxShadow = '0 0 10px rgba(52, 152, 219, 0.5)';
+                mainServer.style.opacity = '1';
+                
+                document.getElementById('networkHealth').textContent = '100%';
+                document.getElementById('networkHealth').style.color = '#2ecc71';
+            }, 5000);
+        }
+
+        // Add new branch
+        function addNewBranch() {
+            resetInfo();
+            document.getElementById('branchInfo').style.display = 'block';
+            
+            const container = document.getElementById('topologyAnimation');
+            const branches = config.currentExample === 'school' ? schoolBranches : officeBranches;
+            
+            // Create a new branch
+            const newBranchId = `new-${Date.now()}`;
+            const newBranch = {
+                id: newBranchId,
+                name: config.currentExample === 'school' ? 'New Lab' : 'New Floor',
+                switchX: 550,
+                devices: [
+                    { id: `${newBranchId}-pc1`, type: 'desktop', x: 520, y: 350, label: 'New PC 1' },
+                    { id: `${newBranchId}-pc2`, type: 'desktop', x: 520, y: 400, label: 'New PC 2' },
+                    { id: `${newBranchId}-pc3`, type: 'desktop', x: 520, y: 450, label: 'New PC 3' }
+                ]
+            };
+            
+            config.branches.push(newBranch);
+            createBranch(newBranch, container);
+            
+            updateStatus();
+        }
+
+        // Reset animation
+        function resetAnimation() {
+            resetInfo();
+            initTopology();
+            document.getElementById('networkHealth').textContent = '100%';
+            document.getElementById('networkHealth').style.color = '#2ecc71';
+        }
+
+        // Update status panel
+        function updateStatus() {
+            document.getElementById('branchCount').textContent = config.branches.length;
+            
+            let totalDevices = 0;
+            config.branches.forEach(branch => {
+                totalDevices += branch.devices.length;
+            });
+            document.getElementById('deviceCount').textContent = totalDevices;
+            
+            document.getElementById('activePackets').textContent = config.activePackets;
+        }
+
+        // Reset info panels
+        function resetInfo() {
+            const infoSections = document.querySelectorAll('.demo-info');
+            infoSections.forEach(section => {
+                section.style.display = 'none';
+            });
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', showSchoolExample);
+    </script>
+</body>
+</html>
